@@ -76,14 +76,6 @@
     .delay-300 { transition-delay: 300ms; }
     .delay-350 { transition-delay: 350ms; }
 
-    /* 3D Perspective Card Styles */
-    .card-3d-wrapper {
-      perspective: 1200px;
-    }
-    .card-3d {
-      transition: transform 0.15s ease-out, box-shadow 0.2s ease-out;
-      transform-style: preserve-3d;
-    }
 
     /* Laser Scan Animation */
     @keyframes scanLaser {
@@ -302,12 +294,12 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- 2b. INTERACTIVE 3D HERO COCKPIT SHOWCASE -->
+    <!-- 2b. HERO COCKPIT SHOWCASE -->
     <!-- ========================================================================= -->
-    <div class="mt-12 card-3d-wrapper max-w-4xl mx-auto reveal-on-scroll">
+    <div class="mt-12 max-w-4xl mx-auto reveal-on-scroll">
       <div
         id="hero-mockup-card"
-        class="card-3d bg-white/95 backdrop-blur-md border border-[#EAE5DC] rounded-3xl p-5 sm:p-7 shadow-xl shadow-amber-900/5 relative overflow-hidden transition-all duration-200"
+        class="bg-white/95 backdrop-blur-md border border-[#EAE5DC] rounded-3xl p-5 sm:p-7 shadow-xl shadow-amber-900/5 relative overflow-hidden"
       >
         <!-- Background Ambient Glow inside Card -->
         <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-amber-200/25 blur-3xl pointer-events-none"></div>
@@ -418,7 +410,7 @@
         <div class="mt-4 pt-3.5 border-t border-[#EAE5DC] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
           <div class="flex items-center gap-2 text-slate-500 text-[11px]">
             <span class="text-gold-600">✨</span>
-            <span><strong>Mauszeiger bewegen</strong> für plastischen 3D-Blickwinkel</span>
+            <span>Intelligente Dokumenten- & Belegprüfung in Echtzeit</span>
           </div>
           <div class="flex items-center gap-2">
             <span class="text-[11px] text-slate-400">100% vertraulich • Keine echten Adressen</span>
@@ -943,28 +935,7 @@
     }
     renderAmbientGlow();
 
-    // 2. Interactive 3D Card Tilt for Hero Mockup
-    const heroCard = document.getElementById('hero-mockup-card');
-    const heroWrapper = document.querySelector('.card-3d-wrapper');
-    if (heroWrapper && heroCard) {
-      heroWrapper.addEventListener('mousemove', (e) => {
-        const rect = heroCard.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -8;
-        const rotateY = ((x - centerX) / centerX) * 8;
-        heroCard.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
-        heroCard.style.boxShadow = `0 25px 45px -12px rgba(184, 150, 40, 0.16), 0 12px 25px -8px rgba(0, 0, 0, 0.06)`;
-      });
-      heroWrapper.addEventListener('mouseleave', () => {
-        heroCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        heroCard.style.boxShadow = '';
-      });
-    }
-
-    // 3. Dynamic Cursor Spotlight on Cards (.glow-card)
+    // 2. Dynamic Cursor Spotlight on Cards (.glow-card)
     document.querySelectorAll('.glow-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -975,7 +946,7 @@
       });
     });
 
-    // 4. Scroll Reveal IntersectionObserver
+    // 3. Scroll Reveal IntersectionObserver
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -991,7 +962,7 @@
       revealObserver.observe(el);
     });
 
-    // 5. Interactive Unit Price Calculator & Plan Toggle
+    // 4. Interactive Unit Price Calculator & Plan Toggle
     let currentBillingPlan = 'yearly'; // 'yearly' (0,99 €) or 'monthly' (1,50 €)
 
     function setBillingPlan(plan) {
