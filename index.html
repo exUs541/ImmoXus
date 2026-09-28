@@ -34,7 +34,7 @@
 
     /* Interactive Ambient Cursor Glow */
     .ambient-glow {
-      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 25%), rgba(212, 175, 55, 0.08), rgba(245, 242, 235, 0.02) 60%, transparent 80%);
+      background: radial-gradient(650px circle at var(--mouse-x, 50%) var(--mouse-y, 25%), rgba(212, 175, 55, 0.12), rgba(245, 242, 235, 0.03) 60%, transparent 80%);
       pointer-events: none;
     }
 
@@ -53,6 +53,69 @@
     }
     .animate-glow {
       animation: pulseGlow 4s ease-in-out infinite;
+    }
+
+    /* Scroll Reveal Animation Engine */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered Delay Utilities */
+    .delay-75 { transition-delay: 75ms; }
+    .delay-100 { transition-delay: 100ms; }
+    .delay-150 { transition-delay: 150ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-250 { transition-delay: 250ms; }
+    .delay-300 { transition-delay: 300ms; }
+    .delay-350 { transition-delay: 350ms; }
+
+    /* 3D Perspective Card Styles */
+    .card-3d-wrapper {
+      perspective: 1200px;
+    }
+    .card-3d {
+      transition: transform 0.15s ease-out, box-shadow 0.2s ease-out;
+      transform-style: preserve-3d;
+    }
+
+    /* Laser Scan Animation */
+    @keyframes scanLaser {
+      0% { top: 0%; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { top: 95%; opacity: 0; }
+    }
+    .animate-scan {
+      animation: scanLaser 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* Dynamic Cursor Spotlight Border Glow on Cards */
+    .glow-card {
+      position: relative;
+    }
+    .glow-card::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: radial-gradient(350px circle at var(--mouse-card-x, -200px) var(--mouse-card-y, -200px), rgba(212, 175, 55, 0.35), transparent 65%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .glow-card:hover::after {
+      opacity: 1;
     }
   </style>
 </head>
@@ -237,6 +300,133 @@
       </div>
 
     </div>
+
+    <!-- ========================================================================= -->
+    <!-- 2b. INTERACTIVE 3D HERO COCKPIT SHOWCASE -->
+    <!-- ========================================================================= -->
+    <div class="mt-12 card-3d-wrapper max-w-4xl mx-auto reveal-on-scroll">
+      <div
+        id="hero-mockup-card"
+        class="card-3d bg-white/95 backdrop-blur-md border border-[#EAE5DC] rounded-3xl p-5 sm:p-7 shadow-xl shadow-amber-900/5 relative overflow-hidden transition-all duration-200"
+      >
+        <!-- Background Ambient Glow inside Card -->
+        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-amber-200/25 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-amber-100/35 blur-3xl pointer-events-none"></div>
+
+        <!-- Mockup Top Window Bar -->
+        <div class="flex items-center justify-between border-b border-[#EAE5DC] pb-3.5 mb-5">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-[#EAE5DC] border border-[#DCD5C9]"></span>
+            <span class="w-3 h-3 rounded-full bg-[#EAE5DC] border border-[#DCD5C9]"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-400/80 border border-emerald-500/50"></span>
+          </div>
+          <div class="px-3.5 py-1 rounded-full bg-[#FAF8F5] border border-[#EAE5DC] text-[11px] font-bold text-slate-600 flex items-center gap-2 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>app.immoxus.de • KI-Intake Cockpit</span>
+          </div>
+          <div class="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-amber-50 text-gold-800 border border-amber-200/80">
+            ⚡ LIVE-VORSCHAU
+          </div>
+        </div>
+
+        <!-- Main Interactive Content: Document Scan & Real-Time Extraction -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-left">
+          
+          <!-- Left Column: Simulated Document with Scanning Beam -->
+          <div class="bg-[#FCFBF9] border border-[#EAE5DC] rounded-2xl p-5 relative overflow-hidden shadow-2xs space-y-3.5">
+            
+            <!-- Scan Laser Beam -->
+            <div class="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent animate-scan shadow-[0_0_12px_#D4AF37] z-20 pointer-events-none"></div>
+
+            <!-- Document Header -->
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-100/70 text-gold-800 border border-amber-200/90">
+                PDF-Beleg erkannt
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">INV-2026-089</span>
+            </div>
+
+            <!-- Simulated Invoice Graphic lines -->
+            <div class="space-y-1.5 pt-1">
+              <div class="h-2.5 bg-slate-200/80 rounded w-2/3"></div>
+              <div class="h-2 bg-slate-100 rounded w-full"></div>
+              <div class="h-2 bg-slate-100 rounded w-4/5"></div>
+            </div>
+
+            <!-- Extracted Highlight Box on Document -->
+            <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-left space-y-1 mt-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-slate-500 font-medium">Rechnungssumme:</span>
+                <span class="font-black text-slate-900">480,00 €</span>
+              </div>
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="text-slate-400">Gewerke / Partner:</span>
+                <span class="font-bold text-slate-700">Sanitär Meisterbetrieb</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1 text-[10px] text-emerald-700 font-bold">
+              <span class="flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                OCR-Extraktion abgeschlossen
+              </span>
+              <span class="text-slate-400 font-normal">Dauer: 0.4s</span>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Automated Tax & Settlement Allocation -->
+          <div class="flex flex-col justify-between space-y-3.5">
+            
+            <!-- Allocation Step 1 -->
+            <div class="bg-white border border-[#EAE5DC] rounded-2xl p-4 shadow-2xs space-y-2 hover:border-gold-400 transition-colors">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                  <span class="text-base">📊</span> Anlage V Steuer-Export
+                </span>
+                <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  Automatisch vorkontiert
+                </span>
+              </div>
+              <div class="text-xs text-slate-600 bg-[#FAF8F5] p-2.5 rounded-xl border border-[#EAE5DC] space-y-0.5">
+                <p class="font-bold text-slate-900">Zeile 24: Erhaltungsaufwand</p>
+                <p class="text-[11px] text-slate-500">Sofort abzugsfähige Werbungskosten ohne Steuerberater-Rückfragen</p>
+              </div>
+            </div>
+
+            <!-- Allocation Step 2 -->
+            <div class="bg-white border border-[#EAE5DC] rounded-2xl p-4 shadow-2xs space-y-2 hover:border-gold-400 transition-colors">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                  <span class="text-base">🏢</span> WEG-Hausgeldprüfung
+                </span>
+                <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-blue-50 text-blue-800 border border-blue-200">
+                  Topf 3 (Instandhaltung)
+                </span>
+              </div>
+              <div class="text-xs text-slate-600 bg-[#FAF8F5] p-2.5 rounded-xl border border-[#EAE5DC] space-y-0.5">
+                <p class="font-bold text-slate-900">Nicht auf Mieter umlagefähig</p>
+                <p class="text-[11px] text-slate-500">Schützt vor teuren Formfehlern in der Betriebskostenabrechnung</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Bottom Micro Bar -->
+        <div class="mt-4 pt-3.5 border-t border-[#EAE5DC] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2 text-slate-500 text-[11px]">
+            <span class="text-gold-600">✨</span>
+            <span><strong>Mauszeiger bewegen</strong> für plastischen 3D-Blickwinkel</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] text-slate-400">100% vertraulich • Keine echten Adressen</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
   <!-- ========================================================================= -->
@@ -259,7 +449,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
       <!-- Feature 1: KI-Belege -->
-      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+      <div class="reveal-on-scroll glow-card delay-75 p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
         <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
           🤖
         </div>
@@ -270,7 +460,7 @@
       </div>
 
       <!-- Feature 2: Anlage V -->
-      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+      <div class="reveal-on-scroll glow-card delay-150 p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
         <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
           📊
         </div>
@@ -281,7 +471,7 @@
       </div>
 
       <!-- Feature 3: WEG 4-Töpfe -->
-      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+      <div class="reveal-on-scroll glow-card delay-200 p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
         <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
           🏢
         </div>
@@ -292,7 +482,7 @@
       </div>
 
       <!-- Feature 4: Fahrtenbuch -->
-      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+      <div class="reveal-on-scroll glow-card delay-100 p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
         <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
           🚗
         </div>
@@ -303,7 +493,7 @@
       </div>
 
       <!-- Feature 5: Mietentwicklung -->
-      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+      <div class="reveal-on-scroll glow-card delay-150 p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
         <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
           📈
         </div>
@@ -314,7 +504,7 @@
       </div>
 
       <!-- Feature 6: GoBD WORM -->
-      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+      <div class="reveal-on-scroll glow-card delay-200 p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
         <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
           🔐
         </div>
@@ -347,7 +537,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
-      <div class="p-7 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-4">
+      <div class="reveal-on-scroll glow-card delay-75 p-7 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-4 hover:border-gold-400 hover:shadow-md transition-all duration-200">
         <div class="text-2xl">🏡</div>
         <h3 class="text-base font-bold text-slate-900">Private Vermieter (1–50 Einheiten)</h3>
         <p class="text-xs text-slate-500 leading-relaxed">
@@ -355,7 +545,7 @@
         </p>
       </div>
 
-      <div class="p-7 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-4">
+      <div class="reveal-on-scroll glow-card delay-150 p-7 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-4 hover:border-gold-400 hover:shadow-md transition-all duration-200">
         <div class="text-2xl">🏢</div>
         <h3 class="text-base font-bold text-slate-900">Investoren &amp; vvGmbHs</h3>
         <p class="text-xs text-slate-500 leading-relaxed">
@@ -363,7 +553,7 @@
         </p>
       </div>
 
-      <div class="p-7 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-4">
+      <div class="reveal-on-scroll glow-card delay-250 p-7 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-4 hover:border-gold-400 hover:shadow-md transition-all duration-200">
         <div class="text-2xl">📑</div>
         <h3 class="text-base font-bold text-slate-900">WEG-Eigentümer &amp; Selbstverwalter</h3>
         <p class="text-xs text-slate-500 leading-relaxed">
@@ -394,7 +584,7 @@
     </div>
 
     <!-- Main Pricing Card with Live Calculator -->
-    <div class="max-w-3xl mx-auto p-6 sm:p-8 rounded-3xl bg-white border border-[#EAE5DC] shadow-lg shadow-slate-900/5 space-y-8">
+    <div class="reveal-on-scroll max-w-3xl mx-auto p-6 sm:p-8 rounded-3xl bg-white border border-[#EAE5DC] shadow-lg shadow-slate-900/5 space-y-8">
       
       <!-- Plan Toggle (Jahres-Abo vs. Monats-Abo) -->
       <div class="flex justify-center">
@@ -732,16 +922,76 @@
   <!-- 9. INTERACTIVE JAVASCRIPT: MOUSE AMBIENT GLOW & CALCULATOR & FORM -->
   <!-- ========================================================================= -->
   <script>
-    // 1. Interactive Mousemove Ambient Glow Effect
+    // 1. Organic Smooth-Lerp Ambient Glow Effect
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight * 0.25;
+    let currentX = targetX;
+    let currentY = targetY;
     const ambientBg = document.getElementById('ambient-bg');
+
     window.addEventListener('mousemove', (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      ambientBg.style.setProperty('--mouse-x', x + 'px');
-      ambientBg.style.setProperty('--mouse-y', y + 'px');
+      targetX = e.clientX;
+      targetY = e.clientY;
     });
 
-    // 2. Interactive Unit Price Calculator & Plan Toggle
+    function renderAmbientGlow() {
+      currentX += (targetX - currentX) * 0.085;
+      currentY += (targetY - currentY) * 0.085;
+      ambientBg.style.setProperty('--mouse-x', currentX.toFixed(1) + 'px');
+      ambientBg.style.setProperty('--mouse-y', currentY.toFixed(1) + 'px');
+      requestAnimationFrame(renderAmbientGlow);
+    }
+    renderAmbientGlow();
+
+    // 2. Interactive 3D Card Tilt for Hero Mockup
+    const heroCard = document.getElementById('hero-mockup-card');
+    const heroWrapper = document.querySelector('.card-3d-wrapper');
+    if (heroWrapper && heroCard) {
+      heroWrapper.addEventListener('mousemove', (e) => {
+        const rect = heroCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+        heroCard.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
+        heroCard.style.boxShadow = `0 25px 45px -12px rgba(184, 150, 40, 0.16), 0 12px 25px -8px rgba(0, 0, 0, 0.06)`;
+      });
+      heroWrapper.addEventListener('mouseleave', () => {
+        heroCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        heroCard.style.boxShadow = '';
+      });
+    }
+
+    // 3. Dynamic Cursor Spotlight on Cards (.glow-card)
+    document.querySelectorAll('.glow-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-card-x', x + 'px');
+        card.style.setProperty('--mouse-card-y', y + 'px');
+      });
+    });
+
+    // 4. Scroll Reveal IntersectionObserver
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // 5. Interactive Unit Price Calculator & Plan Toggle
     let currentBillingPlan = 'yearly'; // 'yearly' (0,99 €) or 'monthly' (1,50 €)
 
     function setBillingPlan(plan) {
