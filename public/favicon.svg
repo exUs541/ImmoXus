@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="house-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C882" />
+      <stop offset="50%" stop-color="#B8963E" />
+      <stop offset="100%" stop-color="#8A6E1E" />
+    </linearGradient>
+    <linearGradient id="house-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F9F6F0" />
+    </linearGradient>
+    <linearGradient id="ix-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#997A24" />
+      <stop offset="50%" stop-color="#B8963E" />
+      <stop offset="100%" stop-color="#D4AF37" />
+    </linearGradient>
+  </defs>
+  <path
+    d="M50 9 L15 38.5 C13.5 39.8 13 41.4 13 43.2 L13 85 C13 89.4 16.6 93 21 93 L79 93 C83.4 93 87 89.4 87 85 L87 43.2 C87 41.4 86.5 39.8 85 38.5 L50 9 Z"
+    fill="url(#house-bg)"
+    stroke="url(#house-stroke)"
+    stroke-width="4.5"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M27 40 L50 21 L73 40"
+    stroke="url(#house-stroke)"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-opacity="0.5"
+  />
+  <path
+    d="M71 18 L71 27"
+    stroke="url(#house-stroke)"
+    stroke-width="3.5"
+    stroke-linecap="round"
+  />
+  <text
+    x="50"
+    y="73"
+    text-anchor="middle"
+    fill="url(#ix-gold)"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="33"
+    font-weight="900"
+    letter-spacing="-0.8"
+  >
+    IX
+  </text>
+</svg>

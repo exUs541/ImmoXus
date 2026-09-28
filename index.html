@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ImmoXus – Die intelligente Liegenschafts- & Vermögensverwaltung</title>
   <meta name="description" content="ImmoXus vereint KI-Belegextraktion, WEG-4-Töpfe-Hausgeldabrechnung, Fahrtenbuch gem. § 9 EStG und Anlage V Steuer-Export in einem modernen Cockpit für private Vermieter.">
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="public/favicon.svg">
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     body {
@@ -68,27 +71,64 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 relative flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 duration-200">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xs">
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 relative flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 duration-200">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-sm">
             <defs>
-              <linearGradient id="nav-house-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#E5C882" />
-                <stop offset="50%" stopColor="#B8963E" />
-                <stop offset="100%" stopColor="#8A6E1E" />
+              <linearGradient id="house-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E5C882" />
+                <stop offset="50%" stop-color="#B8963E" />
+                <stop offset="100%" stop-color="#8A6E1E" />
               </linearGradient>
-              <linearGradient id="nav-house-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FFFFFF" />
-                <stop offset="100%" stopColor="#F9F6F0" />
+              <linearGradient id="house-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="100%" stop-color="#F9F6F0" />
+              </linearGradient>
+              <linearGradient id="ix-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#997A24" />
+                <stop offset="50%" stop-color="#B8963E" />
+                <stop offset="100%" stop-color="#D4AF37" />
               </linearGradient>
             </defs>
-            <path d="M50 9 L15 38.5 C13.5 39.8 13 41.4 13 43.2 L13 85 C13 89.4 16.6 93 21 93 L79 93 C83.4 93 87 89.4 87 85 L87 43.2 C87 41.4 86.5 39.8 85 38.5 L50 9 Z" fill="url(#nav-house-bg)" stroke="url(#nav-house-stroke)" stroke-width="3.5" stroke-linejoin="round"/>
-            <path d="M27 40 L50 21 L73 40" stroke="url(#nav-house-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.45"/>
-            <path d="M68 28 L68 18 L76 18 L76 34" stroke="url(#nav-house-stroke)" stroke-width="2.5" stroke-linejoin="round"/>
-            <text x="50" y="70" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="28" fill="#B89628" letter-spacing="-1">IX</text>
+            <!-- Modern Architectural House Silhouette with Gable Roof -->
+            <path
+              d="M50 9 L15 38.5 C13.5 39.8 13 41.4 13 43.2 L13 85 C13 89.4 16.6 93 21 93 L79 93 C83.4 93 87 89.4 87 85 L87 43.2 C87 41.4 86.5 39.8 85 38.5 L50 9 Z"
+              fill="url(#house-bg)"
+              stroke="url(#house-stroke)"
+              stroke-width="3.5"
+              stroke-linejoin="round"
+            />
+            <!-- Architectural Gable Ridge Line -->
+            <path
+              d="M27 40 L50 21 L73 40"
+              stroke="url(#house-stroke)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-opacity="0.45"
+            />
+            <!-- Minimalist Chimney -->
+            <path
+              d="M71 18 L71 27"
+              stroke="url(#house-stroke)"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+            <!-- IX Monogram Centered in House -->
+            <text
+              x="50"
+              y="72"
+              text-anchor="middle"
+              fill="url(#ix-gold)"
+              font-family="system-ui, -apple-system, sans-serif"
+              font-size="31"
+              font-weight="900"
+              letter-spacing="-0.8"
+            >
+              IX
+            </text>
           </svg>
         </div>
-        <span class="text-2xl font-bold tracking-tight text-slate-900">
+        <span class="text-xl font-bold tracking-tight text-slate-900">
           Immo<span class="text-gold-600">Xus</span>
         </span>
       </a>
@@ -514,9 +554,55 @@
         <div class="space-y-3">
           <div class="flex items-center gap-2.5">
             <div class="w-8 h-8 relative flex items-center justify-center shrink-0">
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                <path d="M50 9 L15 38.5 C13.5 39.8 13 41.4 13 43.2 L13 85 C13 89.4 16.6 93 21 93 L79 93 C83.4 93 87 89.4 87 85 L87 43.2 C87 41.4 86.5 39.8 85 38.5 L50 9 Z" fill="#FDFBF7" stroke="#B89628" stroke-width="3.5" stroke-linejoin="round"/>
-                <text x="50" y="70" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="28" fill="#B89628" letter-spacing="-1">IX</text>
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xs">
+                <defs>
+                  <linearGradient id="footer-house-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#E5C882" />
+                    <stop offset="50%" stop-color="#B8963E" />
+                    <stop offset="100%" stop-color="#8A6E1E" />
+                  </linearGradient>
+                  <linearGradient id="footer-house-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="100%" stop-color="#F9F6F0" />
+                  </linearGradient>
+                  <linearGradient id="footer-ix-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#997A24" />
+                    <stop offset="50%" stop-color="#B8963E" />
+                    <stop offset="100%" stop-color="#D4AF37" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M50 9 L15 38.5 C13.5 39.8 13 41.4 13 43.2 L13 85 C13 89.4 16.6 93 21 93 L79 93 C83.4 93 87 89.4 87 85 L87 43.2 C87 41.4 86.5 39.8 85 38.5 L50 9 Z"
+                  fill="url(#footer-house-bg)"
+                  stroke="url(#footer-house-stroke)"
+                  stroke-width="3.5"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M27 40 L50 21 L73 40"
+                  stroke="url(#footer-house-stroke)"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-opacity="0.45"
+                />
+                <path
+                  d="M71 18 L71 27"
+                  stroke="url(#footer-house-stroke)"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                />
+                <text
+                  x="50"
+                  y="72"
+                  text-anchor="middle"
+                  fill="url(#footer-ix-gold)"
+                  font-family="system-ui, -apple-system, sans-serif"
+                  font-size="31"
+                  font-weight="900"
+                  letter-spacing="-0.8"
+                >
+                  IX
+                </text>
               </svg>
             </div>
             <span class="text-base font-bold text-slate-900">
