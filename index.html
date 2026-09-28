@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImmoXus – Die intelligente Liegenschafts- & Vermögensverwaltung</title>
+  <meta name="description" content="ImmoXus vereint KI-Belegextraktion, WEG-4-Töpfe-Hausgeldabrechnung, Fahrtenbuch gem. § 9 EStG und Anlage V Steuer-Export in einem modernen Cockpit für private Vermieter.">
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #FAF8F5;
+      color: #0F172A;
+      overflow-x: hidden;
+    }
+    
+    /* Custom Gold Palette & Glows */
+    .text-gold-500 { color: #D4AF37; }
+    .text-gold-600 { color: #B89628; }
+    .text-gold-700 { color: #91751A; }
+    .text-gold-800 { color: #735D15; }
+    .bg-gold-50 { background-color: #FDFBF7; }
+    .bg-gold-500 { background-color: #D4AF37; }
+    .bg-gold-600 { background-color: #B89628; }
+    .bg-gold-700 { background-color: #91751A; }
+    .border-gold-300 { border-color: #F3E3B6; }
+    .border-gold-400 { border-color: #E5C882; }
+    .border-gold-500 { border-color: #D4AF37; }
+    .border-gold-600 { border-color: #B89628; }
+
+    /* Interactive Ambient Cursor Glow */
+    .ambient-glow {
+      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 25%), rgba(212, 175, 55, 0.08), rgba(245, 242, 235, 0.02) 60%, transparent 80%);
+      pointer-events: none;
+    }
+
+    /* Floating Keyframe */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float {
+      animation: floatSlow 6s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+    }
+    .animate-glow {
+      animation: pulseGlow 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen relative selection:bg-amber-100 selection:text-amber-900">
+
+  <!-- Interactive Dynamic Mouse Ambient Background -->
+  <div id="ambient-bg" class="ambient-glow fixed inset-0 z-0 transition-opacity duration-300"></div>
+
+  <!-- Ambient Light Blurs -->
+  <div class="fixed top-12 left-1/4 w-96 h-96 rounded-full bg-amber-200/20 blur-3xl pointer-events-none -z-10 animate-glow"></div>
+  <div class="fixed top-1/3 right-10 w-[30rem] h-[30rem] rounded-full bg-amber-100/30 blur-3xl pointer-events-none -z-10 animate-glow" style="animation-delay: 2s;"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 1. STICKY HEADER & NAVIGATION -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-[#EAE5DC] transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 relative flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 duration-200">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xs">
+            <defs>
+              <linearGradient id="nav-house-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#E5C882" />
+                <stop offset="50%" stopColor="#B8963E" />
+                <stop offset="100%" stopColor="#8A6E1E" />
+              </linearGradient>
+              <linearGradient id="nav-house-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFFFFF" />
+                <stop offset="100%" stopColor="#F9F6F0" />
+              </linearGradient>
+            </defs>
+            <path d="M50 9 L15 38.5 C13.5 39.8 13 41.4 13 43.2 L13 85 C13 89.4 16.6 93 21 93 L79 93 C83.4 93 87 89.4 87 85 L87 43.2 C87 41.4 86.5 39.8 85 38.5 L50 9 Z" fill="url(#nav-house-bg)" stroke="url(#nav-house-stroke)" stroke-width="3.5" stroke-linejoin="round"/>
+            <path d="M27 40 L50 21 L73 40" stroke="url(#nav-house-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.45"/>
+            <path d="M68 28 L68 18 L76 18 L76 34" stroke="url(#nav-house-stroke)" stroke-width="2.5" stroke-linejoin="round"/>
+            <text x="50" y="70" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="28" fill="#B89628" letter-spacing="-1">IX</text>
+          </svg>
+        </div>
+        <span class="text-2xl font-bold tracking-tight text-slate-900">
+          Immo<span class="text-gold-600">Xus</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="#features" class="hover:text-gold-700 transition-colors py-1">Funktionen</a>
+        <a href="#target" class="hover:text-gold-700 transition-colors py-1">Für wen?</a>
+        <a href="#pricing" class="hover:text-gold-700 transition-colors py-1">Preise</a>
+        <a href="#early-bird" class="hover:text-gold-700 transition-colors py-1 flex items-center gap-1.5">
+          <span>Early Bird (20x VIP)</span>
+          <span class="w-2 h-2 rounded-full bg-gold-600 animate-pulse"></span>
+        </a>
+        <a href="#legal" class="hover:text-gold-700 transition-colors py-1">Impressum &amp; DSGVO</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a
+          href="#early-bird"
+          class="px-5 py-2.5 rounded-xl bg-gold-600 hover:bg-gold-500 text-white text-xs font-bold transition-all duration-200 shadow-xs hover:shadow-md flex items-center gap-2 cursor-pointer group"
+        >
+          <span>Kostenlos vormerken</span>
+          <span class="transition-transform group-hover:translate-x-0.5">➔</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. HERO SECTION -->
+  <!-- ========================================================================= -->
+  <section class="relative z-10 pt-12 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto space-y-6">
+      
+      <!-- VIP Alert Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-200/90 text-gold-800 text-xs font-bold shadow-xs">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-gold-600"></span>
+        </span>
+        <span>Bald verfügbar: Die ersten 20 Nutzer erhalten 1 volles Jahr ImmoXus geschenkt!</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
+        Immobilienverwaltung so einfach und smart wie nie.
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+        Die intelligente All-in-One Plattform für private Vermieter und anspruchsvolle Investoren. 
+        <strong>KI-Belegabwurf</strong>, <strong>WEG-4-Töpfe-Hausgeldabrechnung</strong>, <strong>Fahrtenbuch gem. § 9 EStG</strong> und <strong>automatischer Anlage V Steuer-Export</strong> – komplett ohne Excel-Frust.
+      </p>
+
+      <!-- Key Benefits Strip -->
+      <div class="p-4 sm:p-5 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs max-w-2xl mx-auto text-left space-y-2">
+        <div class="flex items-baseline justify-between flex-wrap gap-2">
+          <div class="flex items-baseline gap-2">
+            <span class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Nur 0,99 €</span>
+            <span class="text-xs font-bold text-slate-500">pro Einheit / Monat</span>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
+            ✨ Erste 9 Monate 100% kostenlos
+          </span>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Volle 9 Monate unverbindlich und kostenfrei mit allen Liegenschaften produktiv arbeiten. Vor Ablauf der Frist kann der Account jederzeit mit 1 Klick gelöscht werden – es fallen <strong>nie Kosten</strong> an.
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a
+          href="#early-bird"
+          class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gold-600 hover:bg-gold-500 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <span>Jetzt Early-Access sichern</span>
+          <span>➔</span>
+        </a>
+        <a
+          href="#features"
+          class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white hover:bg-[#FCFBF9] text-slate-700 font-bold text-sm border border-[#EAE5DC] shadow-xs transition-all duration-200 flex items-center justify-center gap-2"
+        >
+          <span>Software-Tour ansehen</span>
+        </a>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="pt-4 flex items-center justify-center gap-6 text-xs font-semibold text-slate-500 flex-wrap">
+        <span class="flex items-center gap-1.5">
+          <span class="text-emerald-600">✓</span> 100% DSGVO-konform
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="text-emerald-600">✓</span> Serverstandort Deutschland
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="text-emerald-600">✓</span> GoBD 10J WORM-Archiv
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="text-emerald-600">✓</span> Keine Mindestvertragslaufzeit
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. DIE KERNFUNKTIONEN DER SOFTWARE -->
+  <!-- ========================================================================= -->
+  <section id="features" class="relative z-10 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#EAE5DC]">
+    
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+      <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-gold-800 border border-amber-200/80">
+        Leistungsübersicht
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+        Alles, was smarte Vermieter brauchen.
+      </h2>
+      <p class="text-slate-500 text-sm">
+        Schluss mit komplizierter Spezialsoftware. ImmoXus bündelt alle essenziellen Prozesse in einer durchdachten Plattform.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Feature 1: KI-Belege -->
+      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
+          🤖
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">KI-Belegassistent (Google Gemini)</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Einfach Rechnungen, Handwerkerbelege und Mietverträge abwerfen. Die KI liest Rechnungssteller, Betrag, Datum und Gewerke sekundenschnell aus und ordnet sie direkt zu.
+        </p>
+      </div>
+
+      <!-- Feature 2: Anlage V -->
+      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
+          📊
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">Anlage V &amp; DATEV Steuerexport</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Automatisierte Vorkontierung auf die amtlichen Zeilen 9–52 der Anlage V. Der 1-Klick-Export spart Ihnen und Ihrem Steuerberater stundenlange Sortierarbeit.
+        </p>
+      </div>
+
+      <!-- Feature 3: WEG 4-Töpfe -->
+      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
+          🏢
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">WEG-Hausgeld in 4 Töpfen</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Saubere Trennung nach BetrKV (umlagefähig), HeizkostenV, Verwaltung/Instandhaltung und Erhaltungsrücklage. Erzeugt fertige Mieterbriefe gem. § 560 BGB.
+        </p>
+      </div>
+
+      <!-- Feature 4: Fahrtenbuch -->
+      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
+          🚗
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">Fahrtenbuch gem. § 9 EStG</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Kilometerpauschalen (30 bzw. 38 ct/km) für Besichtigungen, Handwerkertermine und Eigentümerversammlungen als Werbungskosten erfassen und finanzamtskonform nachweisen.
+        </p>
+      </div>
+
+      <!-- Feature 5: Mietentwicklung -->
+      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
+          📈
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">Mietentwicklung &amp; Zeitstrahl</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Historische Mietanpassungen, Vergleich von Kalt- und Warmmiete, automatisierte Trend-Badges in % und eine lückenlose Chronologie aller Mieterwechsel.
+        </p>
+      </div>
+
+      <!-- Feature 6: GoBD WORM -->
+      <div class="p-6 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-3 hover:border-gold-400 hover:shadow-md transition-all duration-200">
+        <div class="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center text-xl font-bold border border-amber-200/70">
+          🔐
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">GoBD 10J WORM-Archiv</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Revisionssichere 10-Jahres-Aufbewahrung mit SHA-256 kryptografischer Prüfsumme. Unveränderbar und digital geprüft auf deutschen Servern.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5. FÜR WEN IST IMMOXUS GEDACHT? -->
+  <!-- ========================================================================= -->
+  <section id="target" class="relative z-10 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#EAE5DC]">
+    
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+      <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-gold-800 border border-amber-200/80">
+        Zielgruppe
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+        Für wen ist ImmoXus maßgeschneidert?
+      </h2>
+      <p class="text-slate-500 text-sm">
+        Vom Einzeleigentümer bis zur vermögensverwaltenden Familiengesellschaft.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <div class="p-7 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-4">
+        <div class="text-2xl">🏡</div>
+        <h3 class="text-base font-bold text-slate-900">Private Vermieter (1–50 Einheiten)</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Schluss mit unübersichtlichen Ordnern und Excel-Formeln. Behalten Sie Mieteinnahmen, Nebenkostenvorauszahlungen und Reparaturkosten mühelos im Griff.
+        </p>
+      </div>
+
+      <div class="p-7 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-4">
+        <div class="text-2xl">🏢</div>
+        <h3 class="text-base font-bold text-slate-900">Investoren &amp; vvGmbHs</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Saubere Mandantentrennung für natürliche Personen, vermögensverwaltende GmbHs und GbRs. Revisionssichere Dokumente, Renditeanalyse und Fahrtenbuch.
+        </p>
+      </div>
+
+      <div class="p-7 rounded-3xl bg-white border border-[#EAE5DC] shadow-xs space-y-4">
+        <div class="text-2xl">📑</div>
+        <h3 class="text-base font-bold text-slate-900">WEG-Eigentümer &amp; Selbstverwalter</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Verwaltung von Sondereigentum, automatische Aufteilung der Hausgeldabrechnung und Erstellung rechtssicherer Mieteranschreiben zur Nebenkostenanpassung.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. PREISE & TRANSPARENZ MIT INTERAKTIVEM RECHNER -->
+  <!-- ========================================================================= -->
+  <section id="pricing" class="relative z-10 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#EAE5DC]">
+    
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+      <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-gold-800 border border-amber-200/80">
+        Echtes Fair-Pricing
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+        9 Monate kostenlos. Danach nur 99 Cent.
+      </h2>
+      <p class="text-slate-500 text-sm">
+        Keine versteckten Gebühren • Keine Einrichtungsgebühr • Volle Kostenkontrolle
+      </p>
+    </div>
+
+    <!-- Main Pricing Card with Live Calculator -->
+    <div class="max-w-3xl mx-auto p-6 sm:p-8 rounded-3xl bg-white border border-[#EAE5DC] shadow-lg shadow-slate-900/5 space-y-8">
+      
+      <!-- Top Pricing Hero -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#EAE5DC] pb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-gold-700 block mb-1">Standard-Tarif</span>
+          <div class="flex items-baseline gap-2">
+            <span class="text-4xl font-black text-slate-900">0,99 €</span>
+            <span class="text-sm font-semibold text-slate-500">/ Einheit pro Monat</span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1">inkl. aller KI-Features, Steuerexporte &amp; GoBD-Archiv</p>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold sm:text-right">
+          <span>✨ 9 Monate Gratisphase</span>
+          <span class="text-[11px] font-normal text-emerald-700 block mt-0.5">Zum ausgiebigen produktiven Arbeiten</span>
+        </div>
+      </div>
+
+      <!-- Interactive Calculator Slider -->
+      <div class="space-y-4">
+        <div class="flex justify-between items-center text-xs font-bold text-slate-700">
+          <span>Wie viele Einheiten verwalten Sie?</span>
+          <span id="calc-units-display" class="text-base font-black text-slate-900">8 Einheiten</span>
+        </div>
+        <input
+          type="range"
+          min="1"
+          max="50"
+          value="8"
+          id="pricing-slider"
+          oninput="updateCalculator(this.value)"
+          class="w-full accent-gold-600 cursor-pointer h-2 bg-[#F5F2EB] rounded-lg"
+        />
+        <div class="flex justify-between text-[11px] text-slate-400">
+          <span>1 Einheit (0,99 €)</span>
+          <span>25 Einheiten (24,75 €)</span>
+          <span>50 Einheiten (49,50 €)</span>
+        </div>
+      </div>
+
+      <!-- Cost Output Box -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-4 rounded-2xl bg-[#FCFBF9] border border-[#EAE5DC]">
+          <span class="text-[11px] font-semibold text-slate-400 block mb-1">Kosten erste 9 Monate:</span>
+          <span class="text-2xl font-black text-emerald-700">0,00 €</span>
+          <p class="text-[11px] text-slate-400 mt-1">Vollversion ohne Funktionseinschränkungen</p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-[#FCFBF9] border border-[#EAE5DC]">
+          <span class="text-[11px] font-semibold text-slate-400 block mb-1">Kosten ab Monat 10:</span>
+          <span id="calc-cost-display" class="text-2xl font-black text-slate-900">7,92 € / Monat</span>
+          <p class="text-[11px] text-slate-400 mt-1">Voraussichtlich nur 0,99 € je Einheit</p>
+        </div>
+      </div>
+
+      <!-- Risk-free guarantee box -->
+      <div class="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-xs text-amber-950 flex items-start gap-3">
+        <span class="text-lg">🛡️</span>
+        <div>
+          <strong class="block font-bold">100% Risikofrei &amp; Keine Kostenfalle:</strong>
+          <p class="text-slate-600 mt-0.5 leading-relaxed">
+            Vor Ablauf der 9 Gratismonate (und zu jedem späteren Zeitpunkt) können Sie Ihren Account mit einem einzigen Klick vollständig löschen. 
+            Es entstehen Ihnen zu keinem Zeitpunkt unerwartete Kosten.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 7. EARLY BIRD VIP-AKTION (20 JAHRESABOS GESCHENKT & FORMULAR-STATUS) -->
+  <!-- ========================================================================= -->
+  <section id="early-bird" class="relative z-10 py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-[#EAE5DC]">
+    
+    <div class="max-w-3xl mx-auto p-8 sm:p-10 rounded-3xl bg-white border-2 border-gold-400 shadow-xl shadow-amber-500/5 space-y-8 text-center">
+      
+      <!-- VIP Header -->
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-gold-800 text-xs font-bold">
+          <span>🎁 Exklusives Geschenk zum Marktstart</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          Die ersten 20 registrierten Nutzer erhalten ein volles Jahres-Abo geschenkt!
+        </h2>
+        <p class="text-sm text-slate-600 max-w-xl mx-auto leading-relaxed">
+          Wir möchten den ersten 20 Vermietern und Investoren dafür danken, dass sie ImmoXus von Beginn an aktiv nutzen. Sichern Sie sich 12 Monate kostenfreien Vollzugriff.
+        </p>
+      </div>
+
+      <!-- Form Status Teaser & Early Access Submission -->
+      <div class="max-w-md mx-auto space-y-4 text-left">
+        <div class="p-4 rounded-2xl bg-[#FCFBF9] border border-[#EAE5DC] space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-800">Status der Registrierung:</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-gold-700 border border-amber-200">
+              Formular in Vorbereitung
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Das offizielle Anmeldeformular befindet sich aktuell in der finalen Fertigstellung. 
+            Tragen Sie sich jetzt in die <strong>VIP-Vormerkliste</strong> ein. Sobald das Formular live geht, erhalten Sie als Erste den Freischaltcode.
+          </p>
+
+          <form id="waitlist-form" onsubmit="handleWaitlistSubmit(event)" class="space-y-2 pt-2">
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input
+                type="email"
+                id="waitlist-email"
+                required
+                placeholder="Ihre E-Mail-Adresse..."
+                class="px-4 py-3 rounded-xl bg-white border border-[#EAE5DC] text-xs font-medium focus:outline-none focus:border-gold-600 flex-1 text-slate-800"
+              />
+              <button
+                type="submit"
+                id="waitlist-btn"
+                class="px-5 py-3 rounded-xl bg-gold-600 hover:bg-gold-500 text-white text-xs font-bold transition-all shadow-xs shrink-0 cursor-pointer"
+              >
+                Vormerken
+              </button>
+            </div>
+            <div id="waitlist-success" class="hidden p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 font-bold text-center">
+              ✓ Vielen Dank! Sie sind vorgemerkt und erhalten als Erste Bescheid.
+            </div>
+          </form>
+        </div>
+
+        <!-- Explanation of Registration Workflow -->
+        <div class="p-4 rounded-2xl bg-[#FAF8F5] border border-[#EAE5DC] text-[11px] text-slate-500 space-y-2">
+          <strong class="text-slate-800 block text-xs">So läuft die Registrierung an:</strong>
+          <div class="flex items-start gap-2">
+            <span class="w-4 h-4 rounded-full bg-gold-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">1</span>
+            <span>Tragen Sie sich mit Ihrer E-Mail oben in die VIP-Liste ein.</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="w-4 h-4 rounded-full bg-gold-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">2</span>
+            <span>Sobald das Registrierungsformular freigeschaltet wird, erhalten die ersten 20 Vormerkungen automatisch den Freischaltcode für das <strong>Gratis-Jahr</strong>.</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="w-4 h-4 rounded-full bg-gold-600 text-white font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">3</span>
+            <span>Alle weiteren Nutzer starten mit der regulären 9-monatigen Gratisphase (0 € / jederzeit kündbar).</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 8. RECHTSSICHERHEIT: IMPRESSUM & DATENSCHUTZ GEM. § 5 DDG & DSGVO -->
+  <!-- ========================================================================= -->
+  <footer id="legal" class="relative z-10 bg-white border-t border-[#EAE5DC] pt-14 pb-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto space-y-10">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs text-slate-500">
+        
+        <!-- Column 1: ImmoXus Overview -->
+        <div class="space-y-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 relative flex items-center justify-center shrink-0">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                <path d="M50 9 L15 38.5 C13.5 39.8 13 41.4 13 43.2 L13 85 C13 89.4 16.6 93 21 93 L79 93 C83.4 93 87 89.4 87 85 L87 43.2 C87 41.4 86.5 39.8 85 38.5 L50 9 Z" fill="#FDFBF7" stroke="#B89628" stroke-width="3.5" stroke-linejoin="round"/>
+                <text x="50" y="70" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="900" font-size="28" fill="#B89628" letter-spacing="-1">IX</text>
+              </svg>
+            </div>
+            <span class="text-base font-bold text-slate-900">
+              Immo<span class="text-gold-600">Xus</span>
+            </span>
+          </div>
+          <p class="text-[11px] leading-relaxed">
+            Die moderne Liegenschafts- und Vermögensverwaltung für private Vermieter, Eigentümergemeinschaften und Immobilieninvestoren.
+          </p>
+          <div class="text-[11px] text-slate-400 space-y-1 pt-1">
+            <p>🇩🇪 Server-Standort Deutschland</p>
+            <p>🔒 256-Bit SSL/TLS Verschlüsselung</p>
+            <p>🚫 Keine Tracking- oder Werbe-Cookies</p>
+          </div>
+        </div>
+
+        <!-- Column 2: Impressum gem. § 5 DDG (ehemals TMG) -->
+        <div class="space-y-2">
+          <h4 class="text-sm font-bold text-slate-900">Impressum gem. § 5 DDG</h4>
+          <p class="text-[11px] leading-relaxed">
+            <strong>Dienstanbieter:</strong><br>
+            ImmoXus Technologies<br>
+            Gugelstraße 39<br>
+            90443 Nürnberg, Deutschland
+          </p>
+          <p class="text-[11px] leading-relaxed pt-1">
+            <strong>Kontakt:</strong><br>
+            E-Mail: <a href="mailto:info@immoxus.de" class="text-gold-700 underline">info@immoxus.de</a> / <a href="mailto:admin@immoxus.de" class="text-gold-700 underline">admin@immoxus.de</a>
+          </p>
+          <p class="text-[11px] leading-relaxed pt-1">
+            <strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</strong><br>
+            Umut Meletli, Gugelstraße 39, 90443 Nürnberg
+          </p>
+        </div>
+
+        <!-- Column 3: Datenschutz & Rechtliches gem. DSGVO & PangV -->
+        <div class="space-y-2">
+          <h4 class="text-sm font-bold text-slate-900">Datenschutz &amp; Preisangaben</h4>
+          <p class="text-[11px] leading-relaxed">
+            <strong>Datenschutz (DSGVO):</strong> Die Nutzung der Webseite ist ohne Angabe personenbezogener Daten möglich, ausgenommen der freiwilligen Eintragung in die VIP-Vormerkliste. Daten werden ausschließlich zur Information über den Start von ImmoXus verarbeitet (Art. 6 Abs. 1 lit. a DSGVO). Es gelten die vollen Rechte auf Auskunft, Berichtigung und Löschung (Art. 15–21 DSGVO).
+          </p>
+          <p class="text-[11px] leading-relaxed pt-1">
+            <strong>Preise &amp; Kündigung (PangV):</strong> Alle angegebenen Preise verstehen sich inklusive der gesetzlichen Mehrwertsteuer. Während der 9-monatigen Testphase fallen keinerlei Gebühren an. Das Benutzerkonto kann jederzeit vor Ablauf mit 1 Klick unwiderruflich gelöscht werden.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bottom Bar -->
+      <div class="pt-6 border-t border-[#EAE5DC] flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-400">
+        <span>© 2026 ImmoXus Technologies. Alle Rechte vorbehalten.</span>
+        <span>Rechtssicher für Deutschland • Made with precision</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 9. INTERACTIVE JAVASCRIPT: MOUSE AMBIENT GLOW & CALCULATOR & FORM -->
+  <!-- ========================================================================= -->
+  <script>
+    // 1. Interactive Mousemove Ambient Glow Effect
+    const ambientBg = document.getElementById('ambient-bg');
+    window.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      ambientBg.style.setProperty('--mouse-x', x + 'px');
+      ambientBg.style.setProperty('--mouse-y', y + 'px');
+    });
+
+    // 2. Interactive Unit Price Calculator
+    function updateCalculator(units) {
+      const unitsNum = parseInt(units, 10);
+      document.getElementById('calc-units-display').innerText = unitsNum + (unitsNum === 1 ? ' Einheit' : ' Einheiten');
+      const monthlyCost = (unitsNum * 0.99).toFixed(2).replace('.', ',');
+      document.getElementById('calc-cost-display').innerText = monthlyCost + ' € / Monat';
+    }
+
+    // 3. Early Access Waitlist Form Simulation
+    function handleWaitlistSubmit(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('waitlist-email');
+      const btn = document.getElementById('waitlist-btn');
+      const successBox = document.getElementById('waitlist-success');
+
+      if (!emailInput.value) return;
+
+      btn.disabled = true;
+      btn.innerText = 'Wird gespeichert...';
+
+      setTimeout(() => {
+        btn.innerText = 'Vorgemerkt!';
+        btn.classList.remove('bg-gold-600', 'hover:bg-gold-500');
+        btn.classList.add('bg-emerald-600');
+        emailInput.disabled = true;
+        successBox.classList.remove('hidden');
+      }, 600);
+    }
+  </script>
+</body>
+</html>
