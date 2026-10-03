@@ -490,15 +490,25 @@
     <div class="text-center max-w-6xl mx-auto space-y-6">
       
       <!-- 99-Cent-Versprechen Badge mit Günstig-Preisschild-Symbol (verlinkt auf #deal-99) -->
-      <a href="#deal-99" class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-indigo-50/90 hover:bg-indigo-100/90 border border-indigo-200/90 text-indigo-950 text-xs sm:text-sm font-bold shadow-xs hover:border-indigo-400 hover:shadow-sm transition-all duration-200 cursor-pointer group">
-        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-600 group-hover:bg-indigo-700 text-white shrink-0 shadow-2xs transition-colors" title="Fair-Preis-Garantie">
+      <a
+        href="#deal-99"
+        class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-50 via-emerald-100/70 to-emerald-50 hover:from-emerald-100 hover:to-emerald-100 border border-emerald-300 text-emerald-950 text-xs sm:text-sm font-bold shadow-xs hover:shadow-[0_4px_20px_-2px_rgba(5,150,105,0.28)] hover:border-emerald-500 transition-all duration-300 cursor-pointer group relative overflow-hidden"
+      >
+        <!-- Feiner Glanz-Beam-Effekt auf Hover -->
+        <span class="absolute inset-0 -translate-x-full group-hover:translate-x-full duration-1000 bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform ease-out pointer-events-none"></span>
+
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-600 group-hover:bg-emerald-700 text-white shrink-0 shadow-[0_0_12px_rgba(5,150,105,0.4)] transition-all group-hover:scale-105" title="Aktionsangebot">
           <!-- Price Tag / Günstig SVG Icon -->
           <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/>
             <path d="M7 7h.01"/>
           </svg>
         </span>
-        <span>Unser 99-Cent-Deal: Jetzt ganze 99 Tage kostenlos testen statt der regulären 60 Tage!</span>
+        <span class="font-extrabold text-emerald-950">Unser 99-Cent-Deal:</span>
+        <span class="text-emerald-900 font-semibold">Jetzt ganze 99 Tage kostenlos testen statt der regulären 60 Tage!</span>
+        <span class="hidden sm:inline-block px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-black uppercase tracking-wider shrink-0 shadow-2xs">
+          Aktion
+        </span>
       </a>
 
       <!-- Haupttitel (H1) -->
@@ -550,15 +560,15 @@
         Passt ImmoXus zu Ihrem Bedarf?
       </h2>
       <p class="text-slate-500 text-sm sm:text-base">
-        Wählen Sie Ihre benötigten Funktionen aus und berechnen Sie in 30 Sekunden Ihre Ersparnis.
+        Wählen Sie Ihre gewünschten Themen aus und berechnen Sie in 30 Sekunden Ihre Ersparnis.
       </p>
     </div>
 
     <!-- WIZARD CARD (100% HELL & MINIMALISTISCH) -->
-    <div class="reveal-on-scroll reveal-zoom bg-white rounded-3xl border border-[#EAE5DC] shadow-lg shadow-slate-900/5 overflow-hidden">
+    <div class="reveal-on-scroll reveal-zoom bg-white rounded-3xl border border-[#EAE5DC] shadow-lg shadow-slate-900/5 relative">
 
       <!-- MINIMALIST LIGHT TOP STEPPER -->
-      <div class="bg-[#FAF8F5] border-b border-[#EAE5DC] px-4 py-3 sm:px-8">
+      <div class="bg-[#FAF8F5] rounded-t-3xl border-b border-[#EAE5DC] px-4 py-3 sm:px-8">
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <button
             type="button"
@@ -567,36 +577,36 @@
             class="px-3.5 py-2 rounded-xl border-2 border-gold-500 bg-amber-50/80 text-slate-900 text-left flex items-center gap-2.5 cursor-pointer transition-all"
           >
             <span id="wiz-badge-1" class="w-5 h-5 rounded-full bg-gold-600 text-white font-black text-[11px] flex items-center justify-center shrink-0">1</span>
-            <span class="text-xs font-extrabold truncate">Funktionen</span>
+            <span class="text-xs font-extrabold truncate">Themen</span>
           </button>
 
           <button
             type="button"
             id="wiz-nav-2"
-            onclick="goToWizardStep(2)"
-            class="px-3.5 py-2 rounded-xl border border-transparent hover:bg-white text-slate-400 text-left flex items-center gap-2.5 cursor-pointer transition-all"
+            onclick="unlockAndGoToStep(2)"
+            class="px-3.5 py-2 rounded-xl border border-transparent text-slate-300 text-left flex items-center gap-2.5 cursor-not-allowed opacity-40 select-none transition-all"
           >
-            <span id="wiz-badge-2" class="w-5 h-5 rounded-full bg-slate-200/70 text-slate-500 font-bold text-[11px] flex items-center justify-center shrink-0">2</span>
+            <span id="wiz-badge-2" class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 font-bold text-[11px] flex items-center justify-center shrink-0">2</span>
             <span class="text-xs font-semibold truncate">Zeitaufwand</span>
           </button>
 
           <button
             type="button"
             id="wiz-nav-3"
-            onclick="goToWizardStep(3)"
-            class="px-3.5 py-2 rounded-xl border border-transparent hover:bg-white text-slate-400 text-left flex items-center gap-2.5 cursor-pointer transition-all"
+            onclick="unlockAndGoToStep(3)"
+            class="px-3.5 py-2 rounded-xl border border-transparent text-slate-300 text-left flex items-center gap-2.5 cursor-not-allowed opacity-40 select-none transition-all"
           >
-            <span id="wiz-badge-3" class="w-5 h-5 rounded-full bg-slate-200/70 text-slate-500 font-bold text-[11px] flex items-center justify-center shrink-0">3</span>
+            <span id="wiz-badge-3" class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 font-bold text-[11px] flex items-center justify-center shrink-0">3</span>
             <span class="text-xs font-semibold truncate">Stundensatz</span>
           </button>
 
           <button
             type="button"
             id="wiz-nav-4"
-            onclick="goToWizardStep(4)"
-            class="px-3.5 py-2 rounded-xl border border-transparent hover:bg-white text-slate-400 text-left flex items-center gap-2.5 cursor-pointer transition-all"
+            onclick="unlockAndGoToStep(4)"
+            class="px-3.5 py-2 rounded-xl border border-transparent text-slate-300 text-left flex items-center gap-2.5 cursor-not-allowed opacity-40 select-none transition-all"
           >
-            <span id="wiz-badge-4" class="w-5 h-5 rounded-full bg-slate-200/70 text-slate-500 font-bold text-[11px] flex items-center justify-center shrink-0">★</span>
+            <span id="wiz-badge-4" class="w-5 h-5 rounded-full bg-slate-100 text-slate-400 font-bold text-[11px] flex items-center justify-center shrink-0">★</span>
             <span class="text-xs font-semibold truncate">Ergebnis</span>
           </button>
         </div>
@@ -694,7 +704,7 @@
             </span>
             <button
               type="button"
-              onclick="goToWizardStep(2)"
+              onclick="unlockAndGoToStep(2)"
               class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gold-600 hover:bg-gold-500 text-white font-black text-sm shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
             >
               <span>Weiter zum Zeitaufwand</span>
@@ -717,7 +727,7 @@
               Ihr monatlicher Zeitaufwand
             </h3>
             <p class="text-xs sm:text-sm text-slate-500">
-              Ihre ausgewählten Themen im Überblick – tragen Sie unten Ihren geschätzten Gesamtaufwand pauschal ein.
+              Ihre ausgewählten Themen im Überblick. Tragen Sie unten Ihren geschätzten Gesamtaufwand pauschal ein.
             </p>
           </div>
 
@@ -799,7 +809,7 @@
               </button>
               <button
                 type="button"
-                onclick="goToWizardStep(3)"
+                onclick="unlockAndGoToStep(3)"
                 class="px-8 py-3.5 rounded-2xl bg-gold-600 hover:bg-gold-500 text-white font-black text-sm shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center gap-2"
               >
                 <span>Weiter zum Stundensatz</span>
@@ -875,14 +885,14 @@
           <div class="pt-3 border-t border-[#F2EFE9] flex items-center justify-between gap-3 shrink-0">
             <button
               type="button"
-              onclick="goToWizardStep(2)"
+              onclick="unlockAndGoToStep(2)"
               class="px-5 py-3 rounded-xl bg-[#FAF8F5] hover:bg-slate-100 text-slate-600 font-bold text-xs border border-[#EAE5DC] cursor-pointer"
             >
               ← Zurück
             </button>
             <button
               type="button"
-              onclick="goToWizardStep(4)"
+              onclick="unlockAndGoToStep(4)"
               class="px-8 py-3.5 rounded-2xl bg-gold-600 hover:bg-gold-500 text-white font-black text-sm shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center gap-2"
             >
               <span>Ergebnis anzeigen</span>
@@ -956,90 +966,107 @@
               </div>
             </div>
 
-            <!-- 3 Minimalist KPI Cards (Full Width) -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full items-start">
+            <!-- 3 Minimalist KPI Cards (Radikal einfach & direkt vergleichbar) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full items-stretch">
               
-              <!-- 1. Kosten ohne ImmoXus / Monat (Bisherige manuelle Arbeitsweise - Rötlich) -->
-              <div class="p-5 rounded-2xl bg-rose-50/70 border-2 border-rose-200/90 flex flex-col justify-between text-center sm:text-left h-full shadow-2xs space-y-3">
+              <!-- 1. Kosten ohne ImmoXus (Bisher manuell - Rot) -->
+              <div class="p-5 rounded-2xl bg-rose-50/70 border-2 border-rose-200/90 flex flex-col justify-between text-center sm:text-left shadow-2xs space-y-3">
                 <div>
-                  <span class="text-xs font-black uppercase tracking-wider text-rose-800 block">Kosten ohne ImmoXus</span>
-                  <div class="my-1.5">
-                    <span id="result-manual-cost" class="text-3xl font-black text-rose-900 block">292,00 € <span class="text-sm font-bold text-rose-500">/ Monat</span></span>
-                    <span id="result-manual-hours" class="text-xs font-bold text-rose-700 block mt-1">20,0 Std. / Monat manuell</span>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-black uppercase tracking-wider text-rose-800">1. Bisher ohne ImmoXus</span>
+                    <span class="text-base">🔴</span>
+                  </div>
+                  <div class="mt-3 space-y-2">
+                    <div class="flex items-baseline justify-between sm:justify-start gap-2">
+                      <span class="text-xs text-rose-700/80 font-bold min-w-[50px]">Monat:</span>
+                      <span id="result-manual-cost" class="text-2xl sm:text-3xl font-black text-rose-950">292,00 €</span>
+                    </div>
+                    <div class="flex items-baseline justify-between sm:justify-start gap-2">
+                      <span class="text-xs text-rose-700/80 font-bold min-w-[50px]">Jahr:</span>
+                      <span id="result-manual-year" class="text-xl sm:text-2xl font-black text-red-600 drop-shadow-2xs">3.504 €</span>
+                    </div>
                   </div>
                 </div>
-                <div id="result-manual-year" class="text-xs font-semibold text-rose-700/90 pt-1 border-t border-rose-200/60">
-                  = 240 Std. &amp; <span class="text-base sm:text-lg font-black text-red-600 drop-shadow-2xs">3.504 €</span> im Jahr
+                <div class="pt-2.5 border-t border-rose-200/60 text-xs font-semibold text-rose-800 flex items-center gap-1.5 justify-center sm:justify-start">
+                  <span>⏱️</span>
+                  <span id="result-manual-hours">20,0 Std. monatliche Arbeitszeit</span>
                 </div>
               </div>
 
-              <!-- 2. Ihr ImmoXus Komplettpreis (Grünlich/Neutral mit Steuer-Tooltip) -->
-              <div class="p-5 rounded-2xl bg-[#F3F8F5] border border-emerald-200/90 flex flex-col justify-between text-center sm:text-left h-full shadow-2xs relative space-y-3">
+              <!-- 2. Ihr ImmoXus Komplettpreis (Klar, transparent, steuerlich absetzbar) -->
+              <div class="p-5 rounded-2xl bg-[#F3F8F5] border-2 border-emerald-200/90 flex flex-col justify-between text-center sm:text-left shadow-2xs relative space-y-3">
                 <div>
-                  <span id="result-price-label" class="text-xs font-bold text-slate-600 block">Ihr ImmoXus Komplettpreis (5 Einh.)</span>
-                  <div class="my-1.5">
-                    <!-- Betrag mit interaktivem Hover-Tooltip -->
-                    <div class="relative group/price inline-block cursor-help">
-                      <div class="inline-flex items-center gap-1.5 border-b border-dashed border-slate-400 group-hover/price:border-emerald-600 transition-colors pb-0.5">
-                        <span id="result-total-price" class="text-3xl font-black text-slate-900 block">4,95 € <span class="text-sm font-bold text-slate-500">/ Monat</span></span>
-                        <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-extrabold flex items-center justify-center shrink-0" title="Steuer-Tipp ansehen">ⓘ</span>
-                      </div>
-
-                      <!-- Tooltip Flyout (Opal / Milchglas ohne innere Kacheln) -->
-                      <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-80 p-4 rounded-2xl tooltip-opal text-slate-800 text-xs shadow-2xl opacity-0 invisible group-hover/price:opacity-100 group-hover/price:visible transition-all duration-200 z-50 text-left space-y-2">
-                        <div class="flex items-center gap-1.5 text-gold-800 font-black text-xs">
-                          <span>💡</span>
-                          <span>Zu 100 % steuerlich absetzbar</span>
-                        </div>
-                        <p class="text-slate-600 text-[11px] leading-relaxed">
-                          Softwarekosten für die Immobilienverwaltung sind in der Regel steuerlich in voller Höhe als Werbungskosten (§ 9 EStG bei V+V) oder Betriebsausgaben (§ 4 Abs. 4 EStG) absetzbar (vorbehaltlich individueller steuerlicher Prüfung).
-                        </p>
-                        <div class="pt-2 border-t border-[#EAE5DC]/80 space-y-0.5">
-                          <div class="text-slate-500 text-[11px] leading-tight">
-                            Bei einer durchschnittlichen Steuerlast von <strong class="text-slate-800">30 %</strong> kostet ImmoXus vermutlich nur:
+                  <div class="flex items-center justify-between">
+                    <span id="result-price-label" class="text-xs font-black uppercase tracking-wider text-slate-700">2. Mit ImmoXus (5 Einh.)</span>
+                    <span class="text-base">🪙</span>
+                  </div>
+                  <div class="mt-3 space-y-2">
+                    <div class="flex items-baseline justify-between sm:justify-start gap-2">
+                      <span class="text-xs text-slate-500 font-bold min-w-[50px]">Monat:</span>
+                      <div class="flex items-center gap-1.5">
+                        <span id="result-total-price" class="text-2xl sm:text-3xl font-black text-slate-900">4,95 €</span>
+                        <!-- Interaktiver Steuer-Tooltip -->
+                        <div class="relative group/price inline-block cursor-help">
+                          <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-black flex items-center justify-center shrink-0" title="100% steuerlich absetzbar">ⓘ</span>
+                          <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 p-3.5 rounded-2xl bg-white border border-amber-200/90 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-left space-y-1.5">
+                            <div class="flex items-center gap-1.5 text-gold-800 font-black text-xs">
+                              <span>💡</span>
+                              <span>100 % steuerlich absetzbar</span>
+                            </div>
+                            <p class="text-slate-600 text-[11px] leading-relaxed">
+                              ImmoXus kann in voller Höhe als Werbungskosten (§ 9 EStG) oder Betriebsausgaben abgesetzt werden.
+                            </p>
+                            <div class="pt-1.5 border-t border-slate-100 text-[11px] text-emerald-700 font-bold" id="result-tooltip-calc">
+                              4,95 € − 1,48 € (30 %) = 3,47 € / Monat
+                            </div>
+                            <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-white"></div>
                           </div>
-                          <div id="result-tooltip-calc" class="font-black text-emerald-700 text-xs pt-0.5">
-                            4,95 € − 1,48 € (30 %) = 3,47 € / Monat
-                          </div>
                         </div>
-                        <!-- Tooltip Arrow (Milchglas weiß) -->
-                        <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-white"></div>
                       </div>
                     </div>
-
-                    <span id="result-immo-time" class="text-xs font-bold text-emerald-800 block mt-1">Nur ~ 4,0 Std. / Monat mit ImmoXus</span>
+                    <div class="flex items-baseline justify-between sm:justify-start gap-2">
+                      <span class="text-xs text-slate-500 font-bold min-w-[50px]">Jahr:</span>
+                      <span id="result-price-year" class="text-xl sm:text-2xl font-black text-emerald-600">59,40 €</span>
+                    </div>
                   </div>
                 </div>
-                <div class="pt-1 border-t border-emerald-200/60">
-                  <span id="result-price-sub" class="text-xs font-semibold text-slate-600 block">Nur <span class="text-base sm:text-lg font-black text-emerald-600">0,99 €</span> je Einheit im Monat · <span class="text-base sm:text-lg font-black text-emerald-600">59,40 €</span> im Jahr</span>
+                <div class="pt-2.5 border-t border-emerald-200/60 text-xs font-semibold text-slate-600 flex items-center gap-1.5 justify-center sm:justify-start">
+                  <span>✓</span>
+                  <span id="result-price-sub">Nur 0,99 € je Einheit / Monat</span>
                 </div>
               </div>
 
-              <!-- 3. Ihre Ersparnis / Monat (Deutlich Grün - Hero Card) -->
-              <div class="flex flex-col">
+              <!-- 3. Ihre Ersparnis & Gewinn (Hero Card & CTA-Button) -->
+              <div class="flex flex-col justify-between">
                 <div class="p-5 rounded-2xl bg-emerald-600 border-2 border-emerald-500 shadow-md shadow-emerald-700/15 flex flex-col justify-between text-center sm:text-left text-white space-y-3">
                   <div>
-                    <span class="text-xs font-black uppercase tracking-wider text-emerald-100 block">Ihre Ersparnis / Monat</span>
-                    <div class="my-1.5">
-                      <!-- 1. Euro-Wert groß oben -->
-                      <span id="result-money-month" class="text-3xl font-black text-white block">+ 228,65 € <span class="text-sm font-bold text-emerald-100">/ Monat</span></span>
-                      <!-- 2. Prozent-Wert darunter -->
-                      <span id="result-savings-pct" class="text-xs font-extrabold text-emerald-100 block mt-1">78 % Kostenersparnis</span>
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-black uppercase tracking-wider text-emerald-100">3. Ihre Ersparnis</span>
+                      <span class="text-base">🟢</span>
+                    </div>
+                    <div class="mt-3 space-y-2">
+                      <div class="flex items-baseline justify-between sm:justify-start gap-2">
+                        <span class="text-xs text-emerald-100 font-bold min-w-[50px]">Monat:</span>
+                        <span id="result-money-month" class="text-2xl sm:text-3xl font-black text-white">+ 287,05 €</span>
+                      </div>
+                      <div class="flex items-baseline justify-between sm:justify-start gap-2">
+                        <span class="text-xs text-emerald-100 font-bold min-w-[50px]">Jahr:</span>
+                        <span id="result-money-year" class="text-xl sm:text-2xl font-black text-white">+ 3.444 € gespart!</span>
+                      </div>
                     </div>
                   </div>
-
-                  <!-- Ohne extra Kachel/Blase -->
-                  <div id="result-money-year" class="text-xs font-medium text-emerald-100 pt-1 border-t border-emerald-500/60">
-                    = <span class="text-base sm:text-lg font-black text-white">2.744 €</span> Ersparnis im Jahr
+                  <div class="pt-2.5 border-t border-emerald-500/60 text-xs font-extrabold text-emerald-100 flex items-center gap-1.5 justify-center sm:justify-start">
+                    <span>🎉</span>
+                    <span id="result-savings-pct">78 % Kostenersparnis</span>
                   </div>
                 </div>
 
-                <!-- Direkt unter der Ersparnis-Kachel: Jetzt kostenlos testen Button (verlinkt auf 99-Cent-Deal Registrierung mit Puls) -->
+                <!-- Direkt unter der Ersparnis-Kachel: Jetzt kostenlos testen Button (mit Puls) -->
                 <a
                   href="#deal-registration"
                   class="mt-3 w-full py-3.5 px-4 rounded-2xl bg-gold-600 hover:bg-gold-500 text-white font-black text-sm shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shrink-0 animate-cta-pulse"
                 >
-                  <span>Jetzt kostenlos testen</span>
+                  <span>Jetzt 99 Tage kostenlos testen</span>
                   <span>➔</span>
                 </a>
               </div>
@@ -2191,53 +2218,132 @@
     ensureVisibleElementsRevealed();
     window.addEventListener('resize', ensureVisibleElementsRevealed, { passive: true });
 
-    // 3. Praxisnahe Vermieter-Themen (Zeitfresser im Alltag)
+    // 3. Praxisnahe Vermieter-Themen mit minimalistischen Vektor-Icons
     const LANDLORD_THEMES = [
-      { id: 'miete', icon: '💶', label: 'Mieteingang & Mahnwesen', pain: 'Mühsamer manueller Kontoabgleich, Überwachung von Zahlungseingängen und zeitraubendes Mahnen säumiger Mieter.', solution: 'Automatischer digitaler Kontoabgleich & 1-Klick-Mahnwesen mit rechtssicheren Vorlagen.', selected: true },
-      { id: 'nebenkosten', icon: '🧾', label: 'Nebenkosten-Abrechnung', pain: 'Komplexe Excel-Listen, komplizierte Verteilerschlüssel und hohes Fehlerrisiko bei Betriebskostenabrechnungen.', solution: 'Automatisierte Betriebskostenabrechnung auf Knopfdruck nach aktuellen BGH-Vorgaben.', selected: true },
-      { id: 'belege', icon: '📁', label: 'Belegchaos & Rechnungen', pain: 'Verstreute Papierrechnungen, unübersichtliche Ordner und langes Suchen nach Garantie- und Handwerkerbelegen.', solution: 'KI-Belegabwurf per Foto/PDF mit automatischer Texterkennung und digitalem Archiv.', selected: true },
-      { id: 'steuern', icon: '📊', label: 'Steuer-Vorbereitung (Anlage V)', pain: 'Am Jahresende tagelang Belege sortieren, Werbungskosten berechnen und Steuerberater-Rückfragen beantworten.', solution: 'Automatischer Anlage-V-Export mit GoBD-konformer Vorkontierung und DATEV-Schnittstelle.', selected: true },
-      { id: 'weg', icon: '🏢', label: 'WEG-Hausgeldabrechnung', pain: 'Mühsames Heraussuchen der umlagefähigen Kosten aus dicken WEG-Jahresabrechnungen (Instandhaltungsrücklage/Topf 3).', solution: 'Automatische 4-Töpfe-Abrechnung: Sofortige Trennung in umlagefähig und nicht umlagefähig.', selected: false },
-      { id: 'mieterwechsel', icon: '🔑', label: 'Mieterwechsel & Übergaben', pain: 'Wohnungsübergabeprotokolle auf Papier, manuelle Zählerstandserfassung und Kautionsabrechnungen.', solution: 'Rechtssichere digitale Übergabeprotokolle mit Fotodokumentation und Zählerstandsführung.', selected: false },
-      { id: 'fahrtenbuch', icon: '🚗', label: 'Fahrtenbuch & Reisekosten', pain: 'Fahrten zu Mietobjekten, Baumärkten oder Eigentümerversammlungen gehen steuerlich oft verloren.', solution: '1-Klick-Fahrtenbuch gem. § 9 EStG zur direkten steuerlichen Absetzung der Fahrtkosten.', selected: false },
-      { id: 'dokumente', icon: '📝', label: 'Dokumente & Formulare', pain: 'Veraltete Mietvertragsvorlagen, Fristversäumnisse bei Mieterhöhungen oder Kündigungen.', solution: 'Aktuelle Mustervorlagen, automatische Indexmietberechnung und rechtssichere Fristenüberwachung.', selected: false }
+      {
+        id: 'miete',
+        label: 'Mieteingang & Mahnwesen',
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>`,
+        pain: 'Mühsamer manueller Kontoabgleich, Überwachung von Zahlungseingängen und zeitraubendes Mahnen säumiger Mieter.',
+        solution: 'Automatischer digitaler Kontoabgleich & 1-Klick-Mahnwesen mit rechtssicheren Vorlagen.',
+        selected: true
+      },
+      {
+        id: 'nebenkosten',
+        label: 'Nebenkosten-Abrechnung',
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 6v2"/><path d="M12 16v2"/></svg>`,
+        pain: 'Komplexe Excel-Listen, komplizierte Verteilerschlüssel und hohes Fehlerrisiko bei Betriebskostenabrechnungen.',
+        solution: 'Automatisierte Betriebskostenabrechnung auf Knopfdruck nach aktuellen BGH-Vorgaben.',
+        selected: true
+      },
+      {
+        id: 'belege',
+        label: 'Belegchaos & Rechnungen',
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+        pain: 'Verstreute Papierrechnungen, unübersichtliche Ordner und langes Suchen nach Handwerkerbelegen.',
+        solution: 'KI-Belegabwurf per Foto/PDF mit automatischer Texterkennung und digitalem Archiv.',
+        selected: true
+      },
+      {
+        id: 'steuern',
+        label: 'Steuer-Vorbereitung (Anlage V)',
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+        pain: 'Am Jahresende tagelang Belege sortieren, Werbungskosten berechnen und Steuerberater-Rückfragen beantworten.',
+        solution: 'Automatischer Anlage-V-Export mit GoBD-konformer Vorkontierung und DATEV-Schnittstelle.',
+        selected: true
+      },
+      {
+        id: 'weg',
+        label: 'WEG-Hausgeldabrechnung',
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg>`,
+        pain: 'Mühsames Heraussuchen der umlagefähigen Kosten aus dicken WEG-Jahresabrechnungen.',
+        solution: 'Automatische 4-Töpfe-Abrechnung: Sofortige Trennung in umlagefähig und nicht umlagefähig.',
+        selected: false
+      },
+      {
+        id: 'mieterwechsel',
+        label: 'Mieterwechsel & Übergaben',
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>`,
+        pain: 'Wohnungsübergabeprotokolle auf Papier, manuelle Zählerstandserfassung und Kautionsabrechnungen.',
+        solution: 'Rechtssichere digitale Übergabeprotokolle mit Fotodokumentation und Zählerstandsführung.',
+        selected: false
+      },
+      {
+        id: 'fahrtenbuch',
+        label: 'Fahrtenbuch & Reisekosten',
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>`,
+        pain: 'Fahrten zu Mietobjekten, Baumärkten oder Eigentümerversammlungen gehen steuerlich oft verloren.',
+        solution: '1-Klick-Fahrtenbuch gem. § 9 EStG zur direkten steuerlichen Absetzung der Fahrtkosten.',
+        selected: false
+      },
+      {
+        id: 'dokumente',
+        label: 'Dokumente & Formulare',
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>`,
+        pain: 'Veraltete Mietvertragsvorlagen, Fristversäumnisse bei Mieterhöhungen oder Kündigungen.',
+        solution: 'Aktuelle Mustervorlagen, automatische Indexmietberechnung und Fristenüberwachung.',
+        selected: false
+      }
     ];
 
     let currentWizardStep = 1;
+    let maxUnlockedStep = 1; // Verhindert das unzulässige Überspringen von Schritten
 
     function goToWizardStep(stepNum) {
+      // Nur Schritte erlauben, die bereits freigeschaltet / besucht wurden
+      if (stepNum > maxUnlockedStep) {
+        return;
+      }
       currentWizardStep = stepNum;
+      updateWizardUI();
+    }
+
+    function unlockAndGoToStep(stepNum) {
+      maxUnlockedStep = Math.max(maxUnlockedStep, stepNum);
+      currentWizardStep = stepNum;
+      updateWizardUI();
+    }
+
+    function updateWizardUI() {
       for (let i = 1; i <= 4; i++) {
         const panel = document.getElementById('wiz-panel-' + i);
         const navBtn = document.getElementById('wiz-nav-' + i);
         const badge = document.getElementById('wiz-badge-' + i);
         if (!panel || !navBtn || !badge) continue;
 
-        if (i === stepNum) {
+        if (i === currentWizardStep) {
           panel.classList.remove('hidden');
           panel.classList.add('flex');
           navBtn.className = 'px-3.5 py-2 rounded-xl border-2 border-gold-500 bg-amber-50/80 text-slate-900 text-left flex items-center gap-2.5 cursor-pointer transition-all';
           badge.className = 'w-5 h-5 rounded-full bg-gold-600 text-white font-black text-[11px] flex items-center justify-center shrink-0';
           badge.innerText = i === 4 ? '★' : String(i);
-        } else if (i < stepNum) {
+        } else if (i < currentWizardStep) {
           panel.classList.add('hidden');
           panel.classList.remove('flex');
           navBtn.className = 'px-3.5 py-2 rounded-xl border border-emerald-200 bg-emerald-50/50 hover:bg-emerald-50 text-slate-700 text-left flex items-center gap-2.5 cursor-pointer transition-all';
           badge.className = 'w-5 h-5 rounded-full bg-emerald-600 text-white font-bold text-[11px] flex items-center justify-center shrink-0';
           badge.innerText = '✓';
-        } else {
+        } else if (i <= maxUnlockedStep) {
+          // Bereits freigeschaltet, aber nicht aktuell
           panel.classList.add('hidden');
           panel.classList.remove('flex');
-          navBtn.className = 'px-3.5 py-2 rounded-xl border border-transparent hover:bg-white text-slate-400 text-left flex items-center gap-2.5 cursor-pointer transition-all';
-          badge.className = 'w-5 h-5 rounded-full bg-slate-200/70 text-slate-500 font-bold text-[11px] flex items-center justify-center shrink-0';
+          navBtn.className = 'px-3.5 py-2 rounded-xl border border-slate-200 hover:bg-white text-slate-600 text-left flex items-center gap-2.5 cursor-pointer transition-all';
+          badge.className = 'w-5 h-5 rounded-full bg-slate-200/70 text-slate-600 font-bold text-[11px] flex items-center justify-center shrink-0';
+          badge.innerText = i === 4 ? '★' : String(i);
+        } else {
+          // Gesperrter Schritt (kann nicht vorab übersprungen werden)
+          panel.classList.add('hidden');
+          panel.classList.remove('flex');
+          navBtn.className = 'px-3.5 py-2 rounded-xl border border-transparent text-slate-300 text-left flex items-center gap-2.5 cursor-not-allowed opacity-40 select-none transition-all';
+          badge.className = 'w-5 h-5 rounded-full bg-slate-100 text-slate-300 font-bold text-[11px] flex items-center justify-center shrink-0';
           badge.innerText = i === 4 ? '★' : String(i);
         }
       }
 
-      if (stepNum === 1) {
+      if (currentWizardStep === 1) {
         requestAnimationFrame(drawDesign1BezierCurves);
       }
-      if (stepNum === 2) {
+      if (currentWizardStep === 2) {
         renderStep2Summary();
       }
       recalculateSavings();
@@ -2273,7 +2379,11 @@
 
           btn.innerHTML = `
             <div class="flex items-center gap-2.5 min-w-0">
-              <span class="text-base sm:text-lg shrink-0">${item.icon}</span>
+              <span class="w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                item.selected ? 'bg-gold-500/20 text-gold-800' : 'bg-slate-100 text-slate-500'
+              }">
+                ${item.svg}
+              </span>
               <span class="text-xs sm:text-sm truncate ${item.selected ? 'text-slate-900 font-extrabold' : 'text-slate-700 font-bold'}">${item.label}</span>
             </div>
             <div class="flex items-center gap-1.5 shrink-0">
@@ -2283,16 +2393,21 @@
             </div>
           `;
 
-          // Tooltip Flyout on Hover
+          // Tooltip Flyout: Links nach LINKS, Rechts nach RECHTS (nutzt den freien Platz der Seiten)
           const tooltip = document.createElement('div');
-          tooltip.className = `pointer-events-none absolute z-50 p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-amber-200/90 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-72 text-left space-y-1.5 ${
+          tooltip.className = `pointer-events-none absolute z-50 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-amber-200/90 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 text-left space-y-1.5 w-64 sm:w-72 ${
             isLeft 
-              ? 'left-0 sm:left-[calc(100%+0.5rem)] top-full sm:top-1/2 sm:-translate-y-1/2' 
-              : 'right-0 sm:right-[calc(100%+0.5rem)] top-full sm:top-1/2 sm:-translate-y-1/2'
+              ? 'left-0 sm:left-auto sm:right-[calc(100%+0.75rem)] top-full sm:top-1/2 sm:-translate-y-1/2' 
+              : 'right-0 sm:right-auto sm:left-[calc(100%+0.75rem)] top-full sm:top-1/2 sm:-translate-y-1/2'
           }`;
           tooltip.innerHTML = `
-            <div class="font-extrabold text-xs text-slate-900 flex items-center gap-1.5">
-              <span>${item.icon}</span>
+            <!-- Subtiler Zeigepfeil zurück zum Themen-Button -->
+            ${isLeft 
+              ? '<div class="hidden sm:block absolute top-1/2 -right-1.5 -translate-y-1/2 border-y-4 border-y-transparent border-l-4 border-l-white"></div>'
+              : '<div class="hidden sm:block absolute top-1/2 -left-1.5 -translate-y-1/2 border-y-4 border-y-transparent border-r-4 border-r-white"></div>'
+            }
+            <div class="font-extrabold text-xs text-slate-900 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-lg bg-amber-50 text-gold-700 flex items-center justify-center shrink-0">${item.svg}</span>
               <span>${item.label}</span>
             </div>
             <div class="text-[11px] text-rose-700 leading-snug">
@@ -2357,7 +2472,6 @@
       const hubRightX = hubRect.right - cRect.left;
       const hubCenterY = hubRect.top - cRect.top + hubRect.height / 2;
 
-      // Render inactive hairline curves first, then active golden curves on top
       const ordered = LANDLORD_THEMES.map((item, idx) => ({ item, idx }))
         .sort((a, b) => Number(a.item.selected) - Number(b.item.selected));
 
@@ -2399,7 +2513,6 @@
           pulsePath.setAttribute('class', 'bezier-flow-active');
           svg.appendChild(pulsePath);
 
-          // Minimalist golden anchor dots at start & end of active curve
           const dotStart = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
           dotStart.setAttribute('cx', String(startX));
           dotStart.setAttribute('cy', String(startY));
@@ -2414,7 +2527,6 @@
           dotEnd.setAttribute('fill', '#D4AF37');
           svg.appendChild(dotEnd);
         } else {
-          // Soft, continuous hairline
           basePath.setAttribute('stroke', '#F1EDE4');
           basePath.setAttribute('stroke-width', '1.2');
           svg.appendChild(basePath);
@@ -2460,7 +2572,7 @@
         const badge = document.createElement('div');
         badge.className = 'inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-[#EAE5DC] shadow-2xs hover:border-gold-300 transition-colors';
         badge.innerHTML = `
-          <span class="text-sm">${t.icon}</span>
+          <span class="w-5 h-5 rounded-lg bg-amber-50 text-gold-700 flex items-center justify-center shrink-0">${t.svg}</span>
           <span class="text-xs font-bold text-slate-800">${t.label}</span>
           <span class="w-4 h-4 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-black flex items-center justify-center">✓</span>
         `;
@@ -2579,12 +2691,13 @@
       const manualHoursYear = manualHoursMonth * 12;
       const savedHoursMonth = manualHoursMonth * 0.8;
       const savedHoursYear = savedHoursMonth * 12;
-      const immoHoursMonth = Math.max(0.2, manualHoursMonth * 0.2);
 
       const manualCostMonth = manualHoursMonth * wageRaw;
       const manualCostYear = manualCostMonth * 12;
 
       const totalImmoPriceMonth = units * 0.99;
+      const totalImmoPriceYear = totalImmoPriceMonth * 12;
+
       const savedMoneyMonth = Math.max(0, (savedHoursMonth * wageRaw) - totalImmoPriceMonth);
       const savedMoneyYear = savedMoneyMonth * 12;
 
@@ -2592,62 +2705,41 @@
         ? Math.max(10, Math.min(99, Math.round((savedMoneyMonth / manualCostMonth) * 100)))
         : 80;
 
-      // Card 1: Bisherige manuelle Arbeitsweise (Kosten & Zeit) - Rote Jahressumme
+      // Card 1: Bisher ohne ImmoXus (Monat, Jahr, Stunden)
       const manualCostEl = document.getElementById('result-manual-cost');
       const manualHoursEl = document.getElementById('result-manual-hours');
       const manualYearEl = document.getElementById('result-manual-year');
 
-      if (manualCostEl) {
-        manualCostEl.innerHTML = `${formatEuroDE(manualCostMonth)} <span class="text-sm font-bold text-rose-500">/ Monat</span>`;
-      }
-      if (manualHoursEl) {
-        manualHoursEl.innerText = `${manualHoursMonth.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Std. / Monat manuell`;
-      }
-      if (manualYearEl) {
-        manualYearEl.innerHTML = `= ${Math.round(manualHoursYear).toLocaleString('de-DE')} Std. &amp; <span class="text-base sm:text-lg font-black text-red-600 drop-shadow-2xs">${formatEuroWholeDE(manualCostYear)}</span> im Jahr`;
-      }
+      if (manualCostEl) manualCostEl.innerText = formatEuroDE(manualCostMonth);
+      if (manualYearEl) manualYearEl.innerText = formatEuroWholeDE(manualCostYear);
+      if (manualHoursEl) manualHoursEl.innerText = `${manualHoursMonth.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Std. monatliche Arbeitszeit`;
 
-      // Card 2: Ihre Ersparnis (Euro groß oben, Prozent darunter, Jahresersparnis)
-      const moneyMonthEl = document.getElementById('result-money-month');
-      const savingsPctEl = document.getElementById('result-savings-pct');
-      const moneyYearEl = document.getElementById('result-money-year');
-
-      if (moneyMonthEl) {
-        moneyMonthEl.innerHTML = `+ ${formatEuroDE(savedMoneyMonth)} <span class="text-sm font-bold text-emerald-100">/ Monat</span>`;
-      }
-      if (savingsPctEl) {
-        savingsPctEl.innerText = `${savingsPct} % Kostenersparnis`;
-      }
-      if (moneyYearEl) {
-        moneyYearEl.innerHTML = `= <span class="text-base sm:text-lg font-black text-white">${formatEuroWholeDE(savedMoneyYear)}</span> Ersparnis im Jahr`;
-      }
-
-      // Card 3: Mit ImmoXus (Kosten, Dauer & Steuer-Tooltip) - Grüne Summen in gleicher Größe wie Card 1
+      // Card 2: Mit ImmoXus Komplettpreis (Monat, Jahr, Subtext)
       const priceLabelEl = document.getElementById('result-price-label');
       const totalPriceEl = document.getElementById('result-total-price');
-      const immoTimeEl = document.getElementById('result-immo-time');
+      const priceYearEl = document.getElementById('result-price-year');
       const priceSubEl = document.getElementById('result-price-sub');
       const tooltipCalcEl = document.getElementById('result-tooltip-calc');
 
-      const totalImmoPriceYear = totalImmoPriceMonth * 12;
+      if (priceLabelEl) priceLabelEl.innerText = `2. Mit ImmoXus (${units} ${units === 1 ? 'Einheit' : 'Einheiten'})`;
+      if (totalPriceEl) totalPriceEl.innerText = formatEuroDE(totalImmoPriceMonth);
+      if (priceYearEl) priceYearEl.innerText = formatEuroDE(totalImmoPriceYear);
+      if (priceSubEl) priceSubEl.innerText = `Nur 0,99 € je Einheit / Monat`;
 
-      if (priceLabelEl) {
-        priceLabelEl.innerText = `Ihr ImmoXus Komplettpreis (${units} ${units === 1 ? 'Einheit' : 'Einheiten'})`;
-      }
-      if (totalPriceEl) {
-        totalPriceEl.innerHTML = `${formatEuroDE(totalImmoPriceMonth)} <span class="text-sm font-bold text-slate-500">/ Monat</span>`;
-      }
-      if (immoTimeEl) {
-        immoTimeEl.innerText = `Nur ~ ${immoHoursMonth.toLocaleString('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Std. / Monat mit ImmoXus`;
-      }
-      if (priceSubEl) {
-        priceSubEl.innerHTML = `Nur <span class="text-base sm:text-lg font-black text-emerald-600">0,99 €</span> je Einheit im Monat · <span class="text-base sm:text-lg font-black text-emerald-600">${formatEuroDE(totalImmoPriceYear)}</span> im Jahr`;
-      }
       if (tooltipCalcEl) {
         const taxSavings = totalImmoPriceMonth * 0.3;
         const effectivePrice = totalImmoPriceMonth * 0.7;
         tooltipCalcEl.innerText = `${formatEuroDE(totalImmoPriceMonth)} − ${formatEuroDE(taxSavings)} (30 %) = ${formatEuroDE(effectivePrice)} / Monat`;
       }
+
+      // Card 3: Ihre Ersparnis (Monat groß, Jahr prominent, Prozent)
+      const moneyMonthEl = document.getElementById('result-money-month');
+      const moneyYearEl = document.getElementById('result-money-year');
+      const savingsPctEl = document.getElementById('result-savings-pct');
+
+      if (moneyMonthEl) moneyMonthEl.innerText = `+ ${formatEuroDE(savedMoneyMonth)}`;
+      if (moneyYearEl) moneyYearEl.innerText = `+ ${formatEuroWholeDE(savedMoneyYear)} gespart!`;
+      if (savingsPctEl) savingsPctEl.innerText = `${savingsPct} % Kostenersparnis`;
     }
 
 
