@@ -490,8 +490,8 @@
     <div class="text-center max-w-6xl mx-auto space-y-6">
       
       <!-- 99-Cent-Versprechen Badge mit Günstig-Preisschild-Symbol (verlinkt auf #deal-99) -->
-      <a href="#deal-99" class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-amber-50 hover:bg-amber-100/80 border border-amber-300/90 text-gold-800 text-xs sm:text-sm font-bold shadow-xs hover:border-gold-500 transition-all cursor-pointer">
-        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gold-600 text-white shrink-0 shadow-2xs" title="Fair-Preis-Garantie">
+      <a href="#deal-99" class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-indigo-50/90 hover:bg-indigo-100/90 border border-indigo-200/90 text-indigo-950 text-xs sm:text-sm font-bold shadow-xs hover:border-indigo-400 hover:shadow-sm transition-all duration-200 cursor-pointer group">
+        <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-indigo-600 group-hover:bg-indigo-700 text-white shrink-0 shadow-2xs transition-colors" title="Fair-Preis-Garantie">
           <!-- Price Tag / Günstig SVG Icon -->
           <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/>
@@ -973,36 +973,7 @@
                 </div>
               </div>
 
-              <!-- 2. Ihre Ersparnis / Monat (Deutlich Grün - Hero Card) -->
-              <div class="flex flex-col">
-                <div class="p-5 rounded-2xl bg-emerald-600 border-2 border-emerald-500 shadow-md shadow-emerald-700/15 flex flex-col justify-between text-center sm:text-left text-white space-y-3">
-                  <div>
-                    <span class="text-xs font-black uppercase tracking-wider text-emerald-100 block">Ihre Ersparnis / Monat</span>
-                    <div class="my-1.5">
-                      <!-- 1. Euro-Wert groß oben -->
-                      <span id="result-money-month" class="text-3xl font-black text-white block">+ 228,65 € <span class="text-sm font-bold text-emerald-100">/ Monat</span></span>
-                      <!-- 2. Prozent-Wert darunter -->
-                      <span id="result-savings-pct" class="text-xs font-extrabold text-emerald-100 block mt-1">78 % Kostenersparnis</span>
-                    </div>
-                  </div>
-
-                  <!-- Ohne extra Kachel/Blase -->
-                  <div id="result-money-year" class="text-xs font-medium text-emerald-100 pt-1 border-t border-emerald-500/60">
-                    = <span class="text-base sm:text-lg font-black text-white">2.744 €</span> Ersparnis im Jahr
-                  </div>
-                </div>
-
-                <!-- Direkt unter der Ersparnis-Kachel: Jetzt kostenlos testen Button (verlinkt auf 99-Cent-Deal Registrierung mit Puls) -->
-                <a
-                  href="#deal-registration"
-                  class="mt-3 w-full py-3.5 px-4 rounded-2xl bg-gold-600 hover:bg-gold-500 text-white font-black text-sm shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shrink-0 animate-cta-pulse"
-                >
-                  <span>Jetzt kostenlos testen</span>
-                  <span>➔</span>
-                </a>
-              </div>
-
-              <!-- 3. Ihr ImmoXus Komplettpreis (Grünlich/Neutral mit Steuer-Tooltip) -->
+              <!-- 2. Ihr ImmoXus Komplettpreis (Grünlich/Neutral mit Steuer-Tooltip) -->
               <div class="p-5 rounded-2xl bg-[#F3F8F5] border border-emerald-200/90 flex flex-col justify-between text-center sm:text-left h-full shadow-2xs relative space-y-3">
                 <div>
                   <span id="result-price-label" class="text-xs font-bold text-slate-600 block">Ihr ImmoXus Komplettpreis (5 Einh.)</span>
@@ -1042,6 +1013,35 @@
                 <div class="pt-1 border-t border-emerald-200/60">
                   <span id="result-price-sub" class="text-xs font-semibold text-slate-600 block">Nur <span class="text-base sm:text-lg font-black text-emerald-600">0,99 €</span> je Einheit im Monat · <span class="text-base sm:text-lg font-black text-emerald-600">59,40 €</span> im Jahr</span>
                 </div>
+              </div>
+
+              <!-- 3. Ihre Ersparnis / Monat (Deutlich Grün - Hero Card) -->
+              <div class="flex flex-col">
+                <div class="p-5 rounded-2xl bg-emerald-600 border-2 border-emerald-500 shadow-md shadow-emerald-700/15 flex flex-col justify-between text-center sm:text-left text-white space-y-3">
+                  <div>
+                    <span class="text-xs font-black uppercase tracking-wider text-emerald-100 block">Ihre Ersparnis / Monat</span>
+                    <div class="my-1.5">
+                      <!-- 1. Euro-Wert groß oben -->
+                      <span id="result-money-month" class="text-3xl font-black text-white block">+ 228,65 € <span class="text-sm font-bold text-emerald-100">/ Monat</span></span>
+                      <!-- 2. Prozent-Wert darunter -->
+                      <span id="result-savings-pct" class="text-xs font-extrabold text-emerald-100 block mt-1">78 % Kostenersparnis</span>
+                    </div>
+                  </div>
+
+                  <!-- Ohne extra Kachel/Blase -->
+                  <div id="result-money-year" class="text-xs font-medium text-emerald-100 pt-1 border-t border-emerald-500/60">
+                    = <span class="text-base sm:text-lg font-black text-white">2.744 €</span> Ersparnis im Jahr
+                  </div>
+                </div>
+
+                <!-- Direkt unter der Ersparnis-Kachel: Jetzt kostenlos testen Button (verlinkt auf 99-Cent-Deal Registrierung mit Puls) -->
+                <a
+                  href="#deal-registration"
+                  class="mt-3 w-full py-3.5 px-4 rounded-2xl bg-gold-600 hover:bg-gold-500 text-white font-black text-sm shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shrink-0 animate-cta-pulse"
+                >
+                  <span>Jetzt kostenlos testen</span>
+                  <span>➔</span>
+                </a>
               </div>
 
             </div>
@@ -1320,7 +1320,7 @@
               <div id="story-slide-0" class="space-y-3.5">
                 <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Solide Rendite – aber null Freizeit am Wochenende.</h3>
                 <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  Markus arbeitet Vollzeit als Ingenieur und verbringt seine Freizeit am liebsten mit Hund <strong>Bello</strong> im Wald. Zur Altersvorsorge hat er zwei Immobilien aufgebaut: eine klassische <strong>2-Zimmer-Wohnung</strong> und eine <strong>2er-Studenten-WG</strong>. Sein Wunsch: Die Einheiten sollen verlässlich nebenbei laufen – ohne seine Wochenenden zu fressen.
+                  Markus arbeitet Vollzeit als Ingenieur und verbringt seine Freizeit am liebsten mit Hund Bello im Wald. Zur Altersvorsorge hat er zwei Immobilien aufgebaut: eine klassische 2-Zimmer-Wohnung und eine 2er-Studenten-WG. Sein Wunsch: Die Einheiten sollen verlässlich nebenbei laufen – ohne seine Wochenenden zu fressen.
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
                   <div class="p-3 rounded-xl bg-[#FAF8F5] border border-[#EAE5DC]">
@@ -1342,7 +1342,7 @@
               <div id="story-slide-1" class="hidden space-y-3.5">
                 <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Das Papierchaos: Mieterwechsel, Nebenkosten &amp; Anlage V.</h3>
                 <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  In der Studenten-WG wechseln regelmäßig die Bewohner: Übergabeprotokolle, Kautionen und Mietverträge müssen jedes Mal neu aufgesetzt werden. Dazu kommen unübersichtliche Excel-Listen, die jährliche Nebenkostenabrechnung und das hektische Suchen von Baumarkt-Belegen für die <strong>Anlage V</strong>.
+                  In der Studenten-WG wechseln regelmäßig die Bewohner: Übergabeprotokolle, Kautionen und Mietverträge müssen jedes Mal neu aufgesetzt werden. Dazu kommen unübersichtliche Excel-Listen, die jährliche Nebenkostenabrechnung und das hektische Suchen von Baumarkt-Belegen für die Anlage V.
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
                   <div class="p-3 rounded-xl bg-rose-50/70 border border-rose-200">
@@ -1364,20 +1364,20 @@
               <div id="story-slide-2" class="hidden space-y-3.5">
                 <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Ein System, das mitdenkt und 80 % der Arbeit automatisiert.</h3>
                 <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  Mit ImmoXus hat Markus Wohnung und WG nahtlos im Griff. Mieteingänge werden automatisch mit dem Bankkonto synchronisiert, digitale Übergabeprotokolle auf dem Smartphone unterschrieben und Rechnungen per <strong>KI vorkontiert</strong>. Die <strong>Anlage V</strong> ist auf Knopfdruck fertig.
+                  Mit ImmoXus hat Markus Wohnung und WG nahtlos im Griff. Mieteingänge werden automatisch mit dem Bankkonto synchronisiert, digitale Übergabeprotokolle auf dem Smartphone unterschrieben und Rechnungen per KI vorkontiert. Die Anlage V ist auf Knopfdruck fertig.
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
                   <div class="p-3 rounded-xl bg-amber-50/70 border border-gold-300">
                     <p class="font-extrabold text-slate-900 text-xs">🤖 KI-Belege &amp; Fahrten</p>
-                    <p class="text-[11px] text-emerald-700 font-bold mt-0.5">✓ In Sekunden erfasst</p>
+                    <p class="text-[11px] text-emerald-700 font-medium mt-0.5">✓ In Sekunden erfasst</p>
                   </div>
                   <div class="p-3 rounded-xl bg-amber-50/70 border border-gold-300">
                     <p class="font-extrabold text-slate-900 text-xs">📄 Nebenkosten &amp; Anlage V</p>
-                    <p class="text-[11px] text-emerald-700 font-bold mt-0.5">✓ 1-Klick Steuer-Export</p>
+                    <p class="text-[11px] text-emerald-700 font-medium mt-0.5">✓ 1-Klick Steuer-Export</p>
                   </div>
                   <div class="p-3 rounded-xl bg-amber-100/90 border border-gold-400">
                     <p class="font-extrabold text-gold-900 text-xs">💡 Nur 1,98 € / Monat</p>
-                    <p class="text-[11px] text-gold-800 font-bold mt-0.5">Komplettpreis für 2 WE</p>
+                    <p class="text-[11px] text-gold-800 font-medium mt-0.5">Komplettpreis für 2 WE</p>
                   </div>
                 </div>
               </div>
@@ -1386,16 +1386,16 @@
               <div id="story-slide-3" class="hidden space-y-3.5">
                 <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Der Laptop bleibt am Sonntag zu – freie Zeit für Hund Bello.</h3>
                 <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  Aus bis zu 8 Stunden Büroarbeit sind <strong>weniger als 20 Minuten im Monat</strong> geworden. Markus vergisst keinen steuerlichen Abzug mehr, hat alle Dokumente 100 % GoBD-konform geordnet und genießt seine freien Sonntage entspannt mit Bello in der Natur.
+                  Aus bis zu 8 Stunden Büroarbeit sind weniger als 20 Minuten im Monat geworden. Markus vergisst keinen steuerlichen Abzug mehr, hat alle Dokumente 100 % GoBD-konform geordnet und genießt seine freien Sonntage entspannt mit Bello in der Natur.
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
                   <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-300">
                     <p class="font-extrabold text-emerald-950 text-xs">⏰ + 6,5 Std. Freizeit</p>
-                    <p class="text-[11px] text-emerald-700 font-bold mt-0.5">Gewonnene Zeit jeden Monat</p>
+                    <p class="text-[11px] text-emerald-700 font-medium mt-0.5">Gewonnene Zeit jeden Monat</p>
                   </div>
                   <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-300">
                     <p class="font-extrabold text-emerald-950 text-xs">🛡️ 100 % rechtssicher</p>
-                    <p class="text-[11px] text-emerald-700 font-bold mt-0.5">GoBD &amp; Anlage V fertig</p>
+                    <p class="text-[11px] text-emerald-700 font-medium mt-0.5">GoBD &amp; Anlage V fertig</p>
                   </div>
                   <div class="p-3 rounded-xl bg-emerald-600 text-white shadow-xs">
                     <p class="font-extrabold text-white text-xs">🐕 Sonntage mit Bello</p>
@@ -2677,8 +2677,8 @@
         slides: [
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Solide Rendite – aber null Freizeit am Wochenende.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Markus arbeitet Vollzeit als Ingenieur und verbringt seine Freizeit am liebsten mit Hund <strong>Bello</strong> im Wald. Zur Altersvorsorge hat er zwei Immobilien aufgebaut: eine klassische <strong>2-Zimmer-Wohnung</strong> und eine <strong>2er-Studenten-WG</strong>. Sein Wunsch: Die Einheiten sollen verlässlich nebenbei laufen – ohne seine Wochenenden zu fressen.
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              Markus arbeitet Vollzeit als Ingenieur und verbringt seine Freizeit am liebsten mit Hund Bello im Wald. Zur Altersvorsorge hat er zwei Immobilien aufgebaut: eine klassische 2-Zimmer-Wohnung und eine 2er-Studenten-WG. Sein Wunsch: Die Einheiten sollen verlässlich nebenbei laufen – ohne seine Wochenenden zu fressen.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-[#FAF8F5] border border-[#EAE5DC]">
@@ -2697,8 +2697,8 @@
           `,
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Das Papierchaos: Mieterwechsel, Nebenkosten &amp; Anlage V.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-              In der Studenten-WG wechseln regelmäßig die Bewohner: Übergabeprotokolle, Kautionen und Mietverträge müssen jedes Mal neu aufgesetzt werden. Dazu kommen unübersichtliche Excel-Listen, die jährliche Nebenkostenabrechnung und das hektische Suchen von Baumarkt-Belegen für die <strong>Anlage V</strong>.
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              In der Studenten-WG wechseln regelmäßig die Bewohner: Übergabeprotokolle, Kautionen und Mietverträge müssen jedes Mal neu aufgesetzt werden. Dazu kommen unübersichtliche Excel-Listen, die jährliche Nebenkostenabrechnung und das hektische Suchen von Baumarkt-Belegen für die Anlage V.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-rose-50/70 border border-rose-200">
@@ -2717,37 +2717,37 @@
           `,
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Ein System, das mitdenkt und 80 % der Arbeit automatisiert.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Mit ImmoXus hat Markus Wohnung und WG nahtlos im Griff. Mieteingänge werden automatisch mit dem Bankkonto synchronisiert, digitale Übergabeprotokolle auf dem Smartphone unterschrieben und Rechnungen per <strong>KI vorkontiert</strong>. Die <strong>Anlage V</strong> ist auf Knopfdruck fertig.
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              Mit ImmoXus hat Markus Wohnung und WG nahtlos im Griff. Mieteingänge werden automatisch mit dem Bankkonto synchronisiert, digitale Übergabeprotokolle auf dem Smartphone unterschrieben und Rechnungen per KI vorkontiert. Die Anlage V ist auf Knopfdruck fertig.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-amber-50/70 border border-gold-300">
                 <p class="font-extrabold text-slate-900 text-xs">🤖 KI-Belege &amp; Fahrten</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">✓ In Sekunden erfasst</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">✓ In Sekunden erfasst</p>
               </div>
               <div class="p-3 rounded-xl bg-amber-50/70 border border-gold-300">
                 <p class="font-extrabold text-slate-900 text-xs">📄 Nebenkosten &amp; Anlage V</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">✓ 1-Klick Steuer-Export</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">✓ 1-Klick Steuer-Export</p>
               </div>
               <div class="p-3 rounded-xl bg-amber-100/90 border border-gold-400">
                 <p class="font-extrabold text-gold-900 text-xs">💡 Nur 1,98 € / Monat</p>
-                <p class="text-[11px] text-gold-800 font-bold mt-0.5">Komplettpreis für 2 WE</p>
+                <p class="text-[11px] text-gold-800 font-medium mt-0.5">Komplettpreis für 2 WE</p>
               </div>
             </div>
           `,
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Der Laptop bleibt am Sonntag zu – freie Zeit für Hund Bello.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Aus bis zu 8 Stunden Büroarbeit sind <strong>weniger als 20 Minuten im Monat</strong> geworden. Markus vergisst keinen steuerlichen Abzug mehr, hat alle Dokumente 100 % GoBD-konform geordnet und genießt seine freien Sonntage entspannt mit Bello in der Natur.
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              Aus bis zu 8 Stunden Büroarbeit sind weniger als 20 Minuten im Monat geworden. Markus vergisst keinen steuerlichen Abzug mehr, hat alle Dokumente 100 % GoBD-konform geordnet und genießt seine freien Sonntage entspannt mit Bello in der Natur.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-300">
                 <p class="font-extrabold text-emerald-950 text-xs">⏰ + 6,5 Std. Freizeit</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">Gewonnene Zeit jeden Monat</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">Gewonnene Zeit jeden Monat</p>
               </div>
               <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-300">
                 <p class="font-extrabold text-emerald-950 text-xs">🛡️ 100 % rechtssicher</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">GoBD &amp; Anlage V fertig</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">GoBD &amp; Anlage V fertig</p>
               </div>
               <div class="p-3 rounded-xl bg-emerald-600 text-white shadow-xs">
                 <p class="font-extrabold text-white text-xs">🐕 Sonntage mit Bello</p>
@@ -2778,8 +2778,8 @@
         slides: [
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Zwei anspruchsvolle Jobs &amp; 8 Wohnungen als GbR.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Julia (Architektin) und Alex (IT-Consultant) haben gemeinsam eine Immobilien-GbR gegründet und besitzen <strong>2 Mehrfamilienhäuser mit 8 Wohnungen</strong>. Beide sind beruflich stark eingespannt und möchten die Liegenschaften partnerschaftlich und transparent verwalten – ohne mühsame Excel-Synchronisationen oder endlose Abstimmungsschleifen.
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              Julia (Architektin) und Alex (IT-Consultant) haben gemeinsam eine Immobilien-GbR gegründet und besitzen 2 Mehrfamilienhäuser mit 8 Wohnungen. Beide sind beruflich stark eingespannt und möchten die Liegenschaften partnerschaftlich und transparent verwalten – ohne mühsame Excel-Synchronisationen oder endlose Abstimmungsschleifen.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-[#FAF8F5] border border-[#EAE5DC]">
@@ -2798,8 +2798,8 @@
           `,
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Gemeinsame Haftung, Steuerquälerei &amp; WhatsApp-Chaos.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Bei einer GbR fordert das Finanzamt eine <strong>gesonderte und einheitliche Feststellung</strong>. Wer hat welchen Beleg bezahlt? Wann wurde die letzte Miete überwiesen? Ohne Multi-User-Zugriff führten parallele Tabellen, vergessene Nebenkostenfristen und Zettelwirtschaft regelmäßig zu Frust und zeitraubenden Sonntags-Diskussionen.
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              Bei einer GbR fordert das Finanzamt eine gesonderte und einheitliche Feststellung. Wer hat welchen Beleg bezahlt? Wann wurde die letzte Miete überwiesen? Ohne Multi-User-Zugriff führten parallele Tabellen, vergessene Nebenkostenfristen und Zettelwirtschaft regelmäßig zu Frust und zeitraubenden Sonntags-Diskussionen.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-rose-50/70 border border-rose-200">
@@ -2818,37 +2818,37 @@
           `,
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Echte Multi-User-Kollaboration &amp; Steuerquotierung auf Knopfdruck.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Mit ImmoXus besitzen Julia und Alex <strong>getrennte Logins mit synchronisiertem Audit-Trail</strong>: Jeder sieht sofort, welche Zahlungen eingegangen sind und welche Handwerker beauftragt wurden. Belege werden fotografiert, automatisch der jeweiligen Wohnung zugeordnet und nach GbR-Beteiligungsquote für die Feststellungserklärung aufbereitet.
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              Mit ImmoXus besitzen Julia und Alex getrennte Logins mit synchronisiertem Audit-Trail: Jeder sieht sofort, welche Zahlungen eingegangen sind und welche Handwerker beauftragt wurden. Belege werden fotografiert, automatisch der jeweiligen Wohnung zugeordnet und nach GbR-Beteiligungsquote für die Feststellungserklärung aufbereitet.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-amber-50/70 border border-gold-300">
                 <p class="font-extrabold text-slate-900 text-xs">👥 Multi-User &amp; Rollen</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">✓ Eigene Zugänge</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">✓ Eigene Zugänge</p>
               </div>
               <div class="p-3 rounded-xl bg-amber-50/70 border border-gold-300">
                 <p class="font-extrabold text-slate-900 text-xs">📊 DATEV Steuer-Export</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">✓ Fertig quotierte EÜR</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">✓ Fertig quotierte EÜR</p>
               </div>
               <div class="p-3 rounded-xl bg-amber-100/90 border border-gold-400">
                 <p class="font-extrabold text-gold-900 text-xs">💡 Nur 7,92 € / Monat</p>
-                <p class="text-[11px] text-gold-800 font-bold mt-0.5">Komplettpreis für 8 WE</p>
+                <p class="text-[11px] text-gold-800 font-medium mt-0.5">Komplettpreis für 8 WE</p>
               </div>
             </div>
           `,
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Harmonische Partnerschaft: Sonntag Urlaub planen statt Belege sortieren.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
               Keine Missverständnisse mehr über Rechnungen oder offene Aufgaben: Beide Partner haben denselben Echtzeit-Überblick. Der Steuerberater erhält den DATEV-Export ohne Rückfragen, die Betriebskostenabrechnung ist in 15 Minuten verschickt – und der Sonntag gehört der Urlaubsplanung.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-300">
                 <p class="font-extrabold text-emerald-950 text-xs">⏰ 10 Std. weniger Stress</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">Keine Sonntagsdiskussionen</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">Keine Sonntagsdiskussionen</p>
               </div>
               <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-300">
                 <p class="font-extrabold text-emerald-950 text-xs">📉 Kanzlei-Kosten gesenkt</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">Dank sauberer DATEV-Daten</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">Dank sauberer DATEV-Daten</p>
               </div>
               <div class="p-3 rounded-xl bg-emerald-600 text-white shadow-xs">
                 <p class="font-extrabold text-white text-xs">🏖️ Entspannte Wochenenden</p>
@@ -2879,8 +2879,8 @@
         slides: [
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Familienvermögen mit 46 Einheiten in der VV-GmbH.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Stefan leitet die familieneigene <strong>VV-GmbH mit 9 Mehrfamilienhäusern (44 Wohneinheiten und 2 Gewerbeeinheiten)</strong>. Seine oberste Priorität: Das <strong>15-%-Körperschaftsteuerprivileg</strong> (erweiterte Gewerbesteuerkürzung) rechtssicher zu wahren und den Familienmitgliedern volle Transparenz über Rendite und Instandhaltungen zu bieten.
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              Stefan leitet die familieneigene VV-GmbH mit 9 Mehrfamilienhäusern (44 Wohneinheiten und 2 Gewerbeeinheiten). Seine oberste Priorität: Das 15-%-Körperschaftsteuerprivileg (erweiterte Gewerbesteuerkürzung) rechtssicher zu wahren und den Familienmitgliedern volle Transparenz über Rendite und Instandhaltungen zu bieten.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-[#FAF8F5] border border-[#EAE5DC]">
@@ -2899,7 +2899,7 @@
           `,
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">HGB-Bilanzierung, strenge Steuerkürzung &amp; Gesellschafter-Reporting.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
               Schon ein kleiner formaler Fehler bei den Gewerbeeinheiten kann die erweiterte Gewerbesteuerkürzung gefährden und zehntausende Euro Steuern kosten. Bisherige Hausverwalter-Tools boten weder rollenbasierte Nur-Lesezugriffe für Familienmitglieder noch saubere HGB-Vorkontierung, GoBD-Revisionssicherheit oder strukturierte Handwerker-Ausschreibungen.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
@@ -2919,37 +2919,37 @@
           `,
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Doppelte Buchführung, GoBD-Sicherheit &amp; Family-Dashboards.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
               ImmoXus unterstützt vollwertige HGB-Kontierung (SKR03/SKR04) und revisionssichere Belegarchivierung nach GoBD. Gewerbliche Nebenerträge werden exakt getrennt überwacht, um das Steuerprivileg abzusichern. Familienmitglieder erhalten individuelle Nur-Lesezugänge für maximale Transparenz.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-amber-50/70 border border-gold-300">
                 <p class="font-extrabold text-slate-900 text-xs">⚖️ Steuerkürzung sicher</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">✓ 15 % Körperschaftsteuer</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">✓ 15 % Körperschaftsteuer</p>
               </div>
               <div class="p-3 rounded-xl bg-amber-50/70 border border-gold-300">
                 <p class="font-extrabold text-slate-900 text-xs">👁️ Family-Lesezugriff</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">✓ Live-Dashboards</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">✓ Live-Dashboards</p>
               </div>
               <div class="p-3 rounded-xl bg-amber-100/90 border border-gold-400">
                 <p class="font-extrabold text-gold-900 text-xs">💡 Nur 45,54 € / Monat</p>
-                <p class="text-[11px] text-gold-800 font-bold mt-0.5">Komplettpreis für 46 WE</p>
+                <p class="text-[11px] text-gold-800 font-medium mt-0.5">Komplettpreis für 46 WE</p>
               </div>
             </div>
           `,
           `
             <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">Volles Vertrauen der Familie und ein rechtssicheres Fundament für Generationen.</h3>
-            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
               Beim jährlichen Familientreffen präsentiert Stefan mit wenigen Klicks den transparenten Vermögens- und Cashflow-Status. Die Betriebskosten werden fristgerecht abgerechnet, das Steuerprivileg ist lückenlos abgesichert und die Verwaltung läuft hochgradig automatisiert auf Autopilot.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
               <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-300">
                 <p class="font-extrabold text-emerald-950 text-xs">⏰ &gt; 20 Std. gespart</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">Als Geschäftsführer entlastet</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">Als Geschäftsführer entlastet</p>
               </div>
               <div class="p-3 rounded-xl bg-emerald-50/80 border border-emerald-300">
                 <p class="font-extrabold text-emerald-950 text-xs">🛡️ 100 % GoBD &amp; HGB</p>
-                <p class="text-[11px] text-emerald-700 font-bold mt-0.5">Lückenlose Rechtssicherheit</p>
+                <p class="text-[11px] text-emerald-700 font-medium mt-0.5">Lückenlose Rechtssicherheit</p>
               </div>
               <div class="p-3 rounded-xl bg-emerald-600 text-white shadow-xs">
                 <p class="font-extrabold text-white text-xs">🥂 Familientreffen</p>
