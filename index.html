@@ -4,7 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ImmoXus – Vermieter- und Hausverwaltungssoftware mit KI-Unterstützung</title>
-  <meta name="description" content="ImmoXus vereint die nahtlose Verwaltung von Einzelwohnungen, WGs, WEGs und VV-GmbHs in einem System. KI-Vorkontierung, 1-Klick-Fahrtkostenerfassung, Anlage-V-Export und GoBD-konformer Steuerberater-Direktzugriff.">
+  <meta name="theme-color" content="#FAF8F5">
+  <link rel="canonical" href="https://immoxus.de/">
+
+  <!-- OpenGraph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="ImmoXus">
+  <meta property="og:url" content="https://immoxus.de/">
+  <meta property="og:title" content="ImmoXus – Vermieter- und Hausverwaltungssoftware mit KI-Unterstützung">
+  <meta property="og:description" content="ImmoXus vereint die nahtlose Verwaltung von Einzelwohnungen, WGs, WEGs und VV-GmbHs in einem System. KI-Vorkontierung, 1-Klick-Fahrtenbuch, Anlage V und DATEV-Export ab 0,99 € / Einheit.">
+  <meta property="og:image" content="https://immoxus.de/images/og-preview.jpg">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ImmoXus – Vermieter- und Hausverwaltungssoftware mit KI-Unterstützung">
+  <meta name="twitter:description" content="ImmoXus automatisiert die Immobilienverwaltung: Mieteingangskontrolle, KI-Belege, Anlage V & DATEV-Export. Jetzt 99 Tage kostenlos testen.">
+  <meta name="twitter:image" content="https://immoxus.de/images/og-preview.jpg">
+
+  <!-- Schema.org SoftwareApplication Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ImmoXus",
+    "operatingSystem": "Web, iOS, Android",
+    "applicationCategory": "BusinessApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.99",
+      "priceCurrency": "EUR"
+    },
+    "description": "All-in-One Immobilien- und Hausverwaltungssoftware mit KI-Vorkontierung, 1-Klick-Fahrtkostenerfassung, GoBD-Belegablage und DATEV-Export."
+  }
+  </script>
+
   <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="public/favicon.svg">
@@ -469,9 +503,45 @@
       -moz-appearance: textfield;
       appearance: textfield;
     }
+
+    /* WCAG 2.1 Focus Visible Outline für Tastaturnutzer */
+    :focus-visible {
+      outline: 2px solid #B89628 !important;
+      outline-offset: 2px !important;
+    }
+
+    /* WCAG AA Barrierefreie Gold-Farben für Text */
+    .text-gold-readable {
+      color: #856616 !important;
+    }
+
+    /* Vestibuläre Schonung: prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .animate-cta-pulse, .animate-glow {
+        animation: none !important;
+      }
+    }
 </style>
 </head>
 <body class="min-h-screen relative selection:bg-amber-100 selection:text-amber-900">
+
+  <!-- Barrierefreier Tastatur-Sprunglink (WCAG 2.4.1 Bypass Blocks) -->
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-slate-900 focus:text-amber-300 focus:rounded-xl focus:shadow-2xl focus:ring-2 focus:ring-gold-500 font-bold text-xs"
+  >
+    Direkt zum Hauptinhalt springen
+  </a>
 
   <!-- Interactive Dynamic Mouse Ambient Background & Foreground Spotlight -->
   <div id="ambient-bg" class="ambient-glow fixed inset-0 z-0 transition-opacity duration-300 pointer-events-none"></div>
@@ -568,19 +638,85 @@
         <a href="datenschutz.html" class="hover:text-gold-700 transition-colors py-1">Datenschutz</a>
       </nav>
 
-      <!-- Action Button -->
-      <div class="flex items-center gap-3">
+      <!-- Action Button & Mobile Menu Toggle -->
+      <div class="flex items-center gap-2.5">
         <a
           href="#deal-registration"
-          class="px-5 py-2.5 rounded-xl bg-gold-600 hover:bg-gold-500 text-white text-xs font-bold transition-all duration-200 shadow-xs hover:shadow-md flex items-center gap-2 cursor-pointer group"
+          class="hidden sm:inline-flex px-5 py-2.5 rounded-xl bg-gold-600 hover:bg-gold-500 text-white text-xs font-bold transition-all duration-200 shadow-xs hover:shadow-md items-center gap-2 cursor-pointer group"
         >
           <span>Jetzt kostenlos testen</span>
           <span class="transition-transform group-hover:translate-x-0.5">➔</span>
         </a>
+
+        <!-- Mobile Hamburger Button (< md) -->
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          onclick="toggleMobileMenu()"
+          aria-expanded="false"
+          aria-controls="mobile-nav-drawer"
+          aria-label="Navigation öffnen"
+          class="md:hidden p-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-gold-500 cursor-pointer flex items-center justify-center"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="18" x2="20" y2="18"/>
+          </svg>
+        </button>
       </div>
 
     </div>
+
+    <!-- Mobile Nav Drawer Overlay (< md) -->
+    <div
+      id="mobile-nav-drawer"
+      class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300 md:hidden"
+      onclick="toggleMobileMenu(false)"
+    >
+      <div
+        class="absolute right-0 top-0 bottom-0 w-72 max-w-[85vw] bg-white p-6 shadow-2xl flex flex-col justify-between"
+        onclick="event.stopPropagation()"
+      >
+        <div>
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+            <span class="font-black text-slate-900 text-base">Menü</span>
+            <button
+              type="button"
+              onclick="toggleMobileMenu(false)"
+              aria-label="Menü schließen"
+              class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer font-bold"
+            >✕</button>
+          </div>
+          <nav class="flex flex-col gap-2 pt-4 text-sm font-bold text-slate-700">
+            <a href="#value-calculator" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-amber-50 hover:text-gold-800 transition-colors">Zeit- &amp; Kostenrechner</a>
+            <a href="#storyline" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-amber-50 hover:text-gold-800 transition-colors">Praxis-Tour</a>
+            <a href="#deal-99" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-amber-50 hover:text-gold-800 transition-colors">99-Cent-Deal</a>
+            <a href="#trust" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-amber-50 hover:text-gold-800 transition-colors">Funktionen</a>
+            <div class="pt-2 mt-2 border-t border-slate-100 flex flex-col gap-1 text-xs text-slate-500 font-semibold">
+              <a href="impressum.html" class="py-2 px-3 rounded-lg hover:bg-slate-50">Impressum</a>
+              <a href="datenschutz.html" class="py-2 px-3 rounded-lg hover:bg-slate-50">Datenschutz</a>
+            </div>
+          </nav>
+        </div>
+        <div class="pt-4 border-t border-slate-100">
+          <a
+            href="#deal-registration"
+            onclick="toggleMobileMenu(false)"
+            class="w-full py-3 px-4 rounded-xl bg-gold-600 hover:bg-gold-500 text-white font-bold text-xs text-center shadow-md flex items-center justify-center gap-2"
+          >
+            <span>Jetzt kostenlos testen</span>
+            <span>➔</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </header>
+
+  <!-- ========================================================================= -->
+  <!-- HAUPTINHALT (MAIN LANDMARK CONTAINER) -->
+  <!-- ========================================================================= -->
+  <main id="main-content">
 
   <!-- ========================================================================= -->
   <!-- 1. HERO SECTION (NEUER INHALT) -->
@@ -869,12 +1005,13 @@
                     <input
                       type="number"
                       id="step2-units-input"
+                      aria-label="Anzahl der verwalteten Wohnungen"
                       min="1"
                       max="5000"
                       step="1"
                       value="5"
                       oninput="onUnitsManualInput(this.value)"
-                      class="w-20 px-2 py-2 rounded-xl bg-white text-slate-900 font-black text-xl text-center border-2 border-gold-500 focus:outline-none shadow-2xs"
+                      class="w-20 px-2 py-2 rounded-xl bg-white text-slate-900 font-black text-xl text-center border-2 border-gold-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 shadow-2xs"
                     />
                     <button
                       type="button"
@@ -921,12 +1058,13 @@
                     <input
                       type="number"
                       id="total-hours-input"
+                      aria-label="Geschätzter monatlicher Zeitaufwand in Stunden"
                       min="0.5"
                       max="200"
                       step="0.5"
                       value="8"
                       oninput="onTotalHoursManualInput(this.value)"
-                      class="w-20 px-2 py-2 rounded-xl bg-white text-slate-900 font-black text-xl text-center border-2 border-gold-500 focus:outline-none shadow-2xs"
+                      class="w-20 px-2 py-2 rounded-xl bg-white text-slate-900 font-black text-xl text-center border-2 border-gold-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 shadow-2xs"
                     />
                     <button
                       type="button"
@@ -1005,12 +1143,13 @@
                 <input
                   type="number"
                   id="wage-input"
+                  aria-label="Stundensatz in Euro pro Stunde"
                   min="14.60"
                   max="500"
                   step="0.5"
                   value="14.60"
                   oninput="syncWageFromInput(this.value)"
-                  class="w-36 px-4 py-3 rounded-2xl bg-white border-2 border-gold-500 text-right font-black text-3xl text-slate-900 focus:outline-none shadow-xs"
+                  class="w-36 px-4 py-3 rounded-2xl bg-white border-2 border-gold-500 text-right font-black text-3xl text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 shadow-xs"
                 />
                 <span class="text-lg font-black text-slate-900">€ / Std.</span>
               </div>
@@ -1254,6 +1393,10 @@
           <img
             src="images/markus.jpg"
             alt="Markus & Hund Luna"
+            width="600"
+            height="600"
+            loading="lazy"
+            decoding="async"
             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
           <span
@@ -1265,7 +1408,7 @@
         </div>
         <div class="px-1 pb-1">
           <div class="flex items-center justify-between">
-            <h4 class="text-base font-black text-slate-900">Markus (42)</h4>
+            <h3 class="text-base font-black text-slate-900">Markus (42)</h3>
             <span class="text-[11px] font-bold text-gold-800 bg-amber-100/90 px-2 py-0.5 rounded-md">Privat</span>
           </div>
           <p class="text-xs text-slate-500 mt-1">Vollzeit-Job, Hund Luna & 2 Einheiten</p>
@@ -1283,6 +1426,10 @@
           <img
             src="images/julia_alex.jpg"
             alt="Julia &amp; Alex"
+            width="600"
+            height="600"
+            loading="lazy"
+            decoding="async"
             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
           <span
@@ -1294,7 +1441,7 @@
         </div>
         <div class="px-1 pb-1">
           <div class="flex items-center justify-between">
-            <h4 class="text-base font-bold text-slate-800">Julia (34) &amp; Alex (36)</h4>
+            <h3 class="text-base font-bold text-slate-800">Julia (34) &amp; Alex (36)</h3>
             <span class="text-[11px] font-bold text-slate-600 bg-slate-100/90 px-2 py-0.5 rounded-md">GbR</span>
           </div>
           <p class="text-xs text-slate-500 mt-1">2 MFH (8 WE), Multi-User &amp; EÜR</p>
@@ -1312,6 +1459,10 @@
           <img
             src="images/stefan.jpg"
             alt="Stefan"
+            width="600"
+            height="600"
+            loading="lazy"
+            decoding="async"
             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
           <span
@@ -1323,7 +1474,7 @@
         </div>
         <div class="px-1 pb-1">
           <div class="flex items-center justify-between">
-            <h4 class="text-base font-bold text-slate-800">Stefan (51)</h4>
+            <h3 class="text-base font-bold text-slate-800">Stefan (51)</h3>
             <span class="text-[11px] font-bold text-slate-600 bg-slate-100/90 px-2 py-0.5 rounded-md">VV-GmbH</span>
           </div>
           <p class="text-xs text-slate-500 mt-1">9 MFH (46 WE), 15% Steuer &amp; HGB</p>
@@ -1339,6 +1490,10 @@
           <img
             src="images/hausverwaltung.jpg"
             alt="Hausverwaltung"
+            width="600"
+            height="600"
+            loading="lazy"
+            decoding="async"
             class="w-full h-full object-cover grayscale opacity-75"
           />
           <span
@@ -1349,7 +1504,7 @@
         </div>
         <div class="px-1 pb-1">
           <div class="flex items-center justify-between">
-            <h4 class="text-base font-bold text-slate-500">Hausverwaltung</h4>
+            <h3 class="text-base font-bold text-slate-500">Hausverwaltung</h3>
             <span class="text-[11px] font-bold text-slate-400 bg-slate-100/80 px-2 py-0.5 rounded-md">WEG</span>
           </div>
           <p class="text-xs text-slate-400 mt-1">WEG-Verwaltung &amp; Eigentümer-Reporting</p>
@@ -1429,7 +1584,7 @@
             <!-- LEFT COLUMN: Persistent Persona Hero Profile (Opal / Milchglas Frosted Glass) -->
             <div id="story-persona-hero" class="group md:col-span-5 glass-opal rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300">
               <div class="relative w-full h-48 sm:h-60 rounded-xl overflow-hidden border border-white/80 shadow-xs bg-slate-100 mb-3">
-                <img id="story-hero-img" src="images/markus.jpg" alt="Markus" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img id="story-hero-img" src="images/markus.jpg" alt="Markus" width="600" height="600" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <span id="story-hero-tag" class="absolute bottom-2.5 left-2.5 px-3 py-1 rounded-full bg-slate-900/85 backdrop-blur-xs text-white text-[11px] font-extrabold shadow-sm">
                   Privatvermieter
                 </span>
@@ -1685,23 +1840,23 @@
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1.5">Vorname</label>
-            <input type="text" placeholder="z. B. Markus" disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-sm text-slate-400 cursor-not-allowed">
+            <label for="reg-preview-firstname" class="block text-xs font-bold text-slate-700 mb-1.5">Vorname</label>
+            <input type="text" id="reg-preview-firstname" name="firstname" placeholder="z. B. Markus" disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-sm text-slate-400 cursor-not-allowed">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1.5">Nachname</label>
-            <input type="text" placeholder="Mustermann" disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-sm text-slate-400 cursor-not-allowed">
+            <label for="reg-preview-lastname" class="block text-xs font-bold text-slate-700 mb-1.5">Nachname</label>
+            <input type="text" id="reg-preview-lastname" name="lastname" placeholder="Mustermann" disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-sm text-slate-400 cursor-not-allowed">
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1.5">E-Mail-Adresse</label>
-          <input type="email" placeholder="markus@beispiel.de" disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-sm text-slate-400 cursor-not-allowed">
+          <label for="reg-preview-email" class="block text-xs font-bold text-slate-700 mb-1.5">E-Mail-Adresse</label>
+          <input type="email" id="reg-preview-email" name="email" placeholder="markus@beispiel.de" disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-sm text-slate-400 cursor-not-allowed">
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1.5">Anzahl Ihrer Einheiten</label>
-          <select disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-sm text-slate-400 cursor-not-allowed">
+          <label for="reg-preview-units" class="block text-xs font-bold text-slate-700 mb-1.5">Anzahl Ihrer Einheiten</label>
+          <select id="reg-preview-units" name="units" disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-sm text-slate-400 cursor-not-allowed">
             <option>1 – 2 Einheiten (Privatvermieter)</option>
             <option>3 – 5 Einheiten</option>
             <option>6 – 10 Einheiten</option>
@@ -1710,13 +1865,13 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1.5">Passwort festlegen</label>
-          <input type="password" value="••••••••••••" disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-sm text-slate-400 cursor-not-allowed">
+          <label for="reg-preview-password" class="block text-xs font-bold text-slate-700 mb-1.5">Passwort festlegen</label>
+          <input type="password" id="reg-preview-password" name="password" value="••••••••••••" disabled class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-sm text-slate-400 cursor-not-allowed">
         </div>
 
         <div class="flex items-center gap-2 pt-1">
-          <input type="checkbox" disabled checked class="rounded border-slate-300 text-gold-600 cursor-not-allowed">
-          <span class="text-xs text-slate-500">Ich sichere mir den 99-Cent-Deal für 99 Tage kostenlos.</span>
+          <input type="checkbox" id="reg-preview-terms" name="terms" disabled checked class="rounded border-slate-300 text-gold-600 cursor-not-allowed">
+          <label for="reg-preview-terms" class="text-xs text-slate-500">Ich sichere mir den 99-Cent-Deal für 99 Tage kostenlos.</label>
         </div>
 
         <button
@@ -2341,6 +2496,7 @@
       </button>
     </div>
   </section>
+  </main>
 
   <!-- ========================================================================= -->
   <!-- 6. RECHTSSICHERHEIT: IMPRESSUM & DATENSCHUTZ GEM. § 5 DDG & DSGVO -->
@@ -3837,6 +3993,33 @@
       window.addEventListener('resize', onScroll, { passive: true });
       onScroll();
     }
+
+    // Barrierefreie Mobile Navigation (Drawer Steuerung)
+    function toggleMobileMenu(forceState) {
+      const drawer = document.getElementById('mobile-nav-drawer');
+      const btn = document.getElementById('mobile-menu-btn');
+      if (!drawer) return;
+      
+      const isOpen = !drawer.classList.contains('hidden');
+      const shouldOpen = typeof forceState === 'boolean' ? forceState : !isOpen;
+      
+      if (shouldOpen) {
+        drawer.classList.remove('hidden');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.add('hidden');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // ESC-Taste schließt mobiles Menü
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        toggleMobileMenu(false);
+      }
+    });
 
     // Initialize Minimalist Toolbox Hub Wizard and Storyline on page load
     initScrollspy();
