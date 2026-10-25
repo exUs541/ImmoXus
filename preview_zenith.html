@@ -52,6 +52,15 @@
   <script>if(!window.tailwind){document.write('<script src="tailwindcss.min.js"><\/script>')}</script>
   
   <style>
+    /* Responsive Fluid H1 Hero Title (Never overflows on mobile) */
+    .hero-title {
+      font-size: clamp(22px, 6.6vw, 72px) !important;
+      line-height: 1.15 !important;
+      letter-spacing: -0.025em !important;
+      overflow-wrap: break-word;
+      hyphens: manual;
+    }
+
     /* ========================================================================= */
     /* GOOGLE STITCH ZENITH DESIGN DNA (SANCTUARY / BREATHABLE INTERFACE)        */
     /* PURE SAGE & PAPER PALETTE - 100% FREE OF YELLOW / GOLD / AMBER           */
@@ -71,12 +80,21 @@
       --color-outline-variant: #c5c8be;
     }
 
+    html, body {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      position: relative;
+    }
+
+    img, svg, video {
+      max-width: 100%;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
       background-color: #f8faf3 !important;
       background: #f8faf3 !important;
       color: #191c18 !important;
-      overflow-x: hidden !important;
     }
 
     h1, h2, h3, h4, .font-headline, .font-black {
@@ -362,7 +380,7 @@
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="relative z-10 hidden md:flex items-center gap-5 text-xs sm:text-sm font-semibold text-[#444841]">
+      <nav class="relative z-10 hidden lg:flex items-center gap-5 text-xs sm:text-sm font-semibold text-[#444841]">
         <a href="#value-calculator" class="nav-item relative hover:text-[#55624d] transition-colors py-1" data-section="value-calculator">
           <span>Zeit- &amp; Kostenrechner</span>
           <span class="nav-indicator"></span>
@@ -401,7 +419,7 @@
           aria-expanded="false"
           aria-controls="mobile-nav-drawer"
           aria-label="Navigation öffnen"
-          class="md:hidden p-2 rounded-full border border-[rgba(85,98,77,0.15)] text-[#444841] hover:bg-[#f2f4ed] focus-visible:ring-2 focus-visible:ring-[#55624d] cursor-pointer flex items-center justify-center"
+          class="lg:hidden p-2 rounded-full border border-[rgba(85,98,77,0.15)] text-[#444841] hover:bg-[#f2f4ed] focus-visible:ring-2 focus-visible:ring-[#55624d] cursor-pointer flex items-center justify-center"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="4" y1="6" x2="20" y2="6"/>
@@ -419,7 +437,7 @@
   <!-- ========================================================================= -->
   <div
     id="mobile-nav-drawer"
-    class="hidden fixed inset-0 z-[100] md:hidden transition-opacity duration-300 opacity-0"
+    class="hidden fixed inset-0 z-[100] lg:hidden transition-opacity duration-300 opacity-0 overflow-hidden"
     role="dialog"
     aria-modal="true"
     aria-label="Hauptnavigation"
@@ -532,10 +550,10 @@
     <div class="text-center max-w-6xl mx-auto space-y-6">
       
       <!-- 99-Cent-Versprechen Badge mit Günstig-Preisschild-Symbol (verlinkt auf #deal-99) -->
-      <a href="#deal-99" class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#f2f4ed] hover:bg-[#e7e9e2] text-[#55624d] text-xs sm:text-sm font-semibold transition-all duration-300 shadow-2xs"
+      <a href="#deal-99" class="relative overflow-hidden group inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#f2f4ed] hover:bg-[#e7e9e2] text-[#55624d] text-xs sm:text-sm font-semibold transition-all duration-300 shadow-2xs"
       >
         <!-- Feiner Glanz-Beam-Effekt auf Hover -->
-        <span class="absolute inset-0 -translate-x-full group-hover:translate-x-full duration-1000 bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform ease-out pointer-events-none"></span>
+        <span class="hidden sm:block absolute inset-0 -translate-x-full group-hover:translate-x-full duration-1000 bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform ease-out pointer-events-none"></span>
 
         <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-600 group-hover:bg-emerald-700 text-white shrink-0 shadow-[0_0_12px_rgba(5,150,105,0.4)] transition-all group-hover:scale-105" title="Aktionsangebot">
           <!-- Price Tag / Günstig SVG Icon -->
@@ -553,7 +571,7 @@
       </a>
 
       <!-- Haupttitel (H1) -->
-      <h1 class="text-[27px] xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-headline tracking-tight leading-[1.15] text-center">
+      <h1 class="hero-title font-headline text-center">
         <span class="block font-normal text-[#55624d]">Immobilienverwaltung</span>
         <span class="block font-black text-[#191c18] mt-1 sm:mt-2">KI-gestützt, einfach, skalierbar</span>
       </h1>
@@ -1045,7 +1063,7 @@
                         <!-- Interaktiver Steuer-Tooltip -->
                         <div class="relative group inline-block cursor-help" tabindex="0">
                           <span class="w-4 h-4 rounded-full bg-[#d9e7cd] text-[#2d3529] text-[10px] font-black flex items-center justify-center shrink-0 shadow-2xs group-hover:bg-[#c5d8b6] transition-colors">ⓘ</span>
-                          <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 p-4 rounded-2xl bg-white/98 backdrop-blur-md border border-[rgba(85,98,77,0.15)] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-200 z-50 text-left space-y-2">
+                          <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 max-w-[calc(100vw-2rem)] p-4 rounded-2xl bg-white/98 backdrop-blur-md border border-[rgba(85,98,77,0.15)] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus:opacity-100 group-focus:visible transition-all duration-200 z-50 text-left space-y-2">
                             <!-- Subtiler Zeigepfeil nach unten -->
                             <div class="absolute top-full left-1/2 -translate-x-1/2 border-x-4 border-x-transparent border-t-4 border-t-white"></div>
                             <div class="font-black text-xs text-[#191c18] flex items-center gap-2">
@@ -1291,9 +1309,9 @@
         </button>
 
         <!-- Eleganter Tooltip im einheitlichen Design-DNA-Stil (wie Themen-Tooltips) -->
-        <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 p-4 rounded-2xl bg-white/98 backdrop-blur-md border border-[rgba(85,98,77,0.15)] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-left space-y-2">
+        <div class="hidden md:block pointer-events-none absolute bottom-full right-0 mb-3 w-72 p-4 rounded-2xl bg-white/98 backdrop-blur-md border border-[rgba(85,98,77,0.15)] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-left space-y-2">
           <!-- Subtiler Zeigepfeil nach unten zur Karte -->
-          <div class="absolute top-full left-1/2 -translate-x-1/2 border-x-4 border-x-transparent border-t-4 border-t-white"></div>
+          <div class="absolute top-full right-12 border-x-4 border-x-transparent border-t-4 border-t-white"></div>
           <div class="font-black text-xs text-[#191c18] flex items-center gap-2">
             <span class="w-5 h-5 rounded-lg bg-[#f2f4ed] text-[#55624d] flex items-center justify-center shrink-0">
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -1367,7 +1385,7 @@
           <div id="story-persona-hero" class="group md:col-span-4 lg:col-span-3 rounded-2xl p-4 sm:p-4.5 flex flex-col justify-between transition-all duration-300 bg-[#f8faf3] border border-[rgba(85,98,77,0.12)] shadow-xs">
             <div>
               <div class="relative w-full aspect-square max-h-44 sm:max-h-48 mx-auto rounded-xl overflow-hidden border border-white/80 shadow-xs bg-[#f2f4ed] mb-3">
-                <img id="story-hero-img" src="images/markus.jpg" alt="Markus" width="600" height="600" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <img id="story-hero-img" src="images/markus.jpg" alt="Markus" width="600" height="600" loading="lazy" decoding="async" class="block w-full h-full max-w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <span id="story-hero-tag" class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-[#191c18]/85 backdrop-blur-xs text-white text-[10px] font-extrabold shadow-sm">
                   Privatvermieter
                 </span>
