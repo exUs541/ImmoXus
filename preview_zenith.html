@@ -92,12 +92,20 @@
       pointer-events: none !important;
     }
 
-    /* WIDESCREEN 5% MARGIN: Exakt 90% Gesamtbreite auf allen Bildschirmen */
-    .max-w-7xl, .max-w-6xl {
-      max-width: 90% !important;
-      width: 90% !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
+    /* WIDESCREEN 5% MARGIN: Exakt 90% Gesamtbreite ab Tablet/Desktop (>= 640px), 100% auf Mobile */
+    @media (min-width: 640px) {
+      .max-w-7xl, .max-w-6xl {
+        max-width: 90% !important;
+        width: 90% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
+    @media (max-width: 639px) {
+      .max-w-7xl, .max-w-6xl {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
     }
 
     /* NO-LINE RULE: Harte Rahmen durch getönte Schatten & Tonal Layering ersetzen */
@@ -332,8 +340,8 @@
   <!-- ========================================================================= -->
   <!-- STICKY HEADER & NAVIGATION (BEIBEHALTEN) -->
   <!-- ========================================================================= -->
-        <header class="sticky top-5 z-50 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300">
-    <div class="glass-pill relative overflow-hidden rounded-full pl-2.5 sm:pl-3.5 pr-3 sm:pr-4 py-1.5 flex items-center justify-between shadow-sm">
+        <header class="sticky top-3 sm:top-5 z-50 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300">
+    <div class="glass-pill relative overflow-hidden rounded-full pl-3 pr-2.5 sm:pl-3.5 sm:pr-4 py-1.5 flex items-center justify-between shadow-sm">
       
       <!-- Stitch Zenith Green Gradient: flush from top to bottom edge of the header -->
       <div class="absolute left-0 top-0 bottom-0 w-64 sm:w-80 bg-gradient-to-r from-[rgba(217,231,205,0.45)] via-[rgba(231,233,226,0.2)] to-transparent pointer-events-none rounded-l-full"></div>
@@ -537,16 +545,17 @@
           </svg>
         </span>
         <span class="font-extrabold text-emerald-950">Unser 99-Cent-Deal:</span>
-        <span class="text-emerald-900 font-semibold">Jetzt ganze 99 Tage kostenlos testen statt der regulären 60 Tage!</span>
+        <span class="text-emerald-900 font-semibold hidden sm:inline">Jetzt ganze 99 Tage kostenlos testen statt der regulären 60 Tage!</span>
+        <span class="text-emerald-900 font-semibold sm:hidden">99 Tage kostenlos testen statt 60 Tage!</span>
         <span class="hidden sm:inline-block px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-black uppercase tracking-wider shrink-0 shadow-2xs">
           Aktion
         </span>
       </a>
 
       <!-- Haupttitel (H1) -->
-      <h1 class="text-4xl sm:text-6xl md:text-7xl font-headline tracking-tight leading-[1.12]">
-        <span class="font-normal text-[#55624d]">Immobilienverwaltung</span><br />
-        <span class="font-black text-[#191c18]">KI-gestützt, einfach, skalierbar</span>
+      <h1 class="text-[27px] xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-headline tracking-tight leading-[1.15] text-center">
+        <span class="block font-normal text-[#55624d]">Immobilienverwaltung</span>
+        <span class="block font-black text-[#191c18] mt-1 sm:mt-2">KI-gestützt, einfach, skalierbar</span>
       </h1>
 
       <!-- Untertitel -->
@@ -555,8 +564,11 @@
       </p>
 
       <!-- Beschreibung -->
-      <p class="text-sm sm:text-base text-[#444841] max-w-4xl mx-auto leading-relaxed font-normal">
+      <p class="hidden md:block text-sm sm:text-base text-[#444841] max-w-4xl mx-auto leading-relaxed font-normal">
         Unabhängig davon, ob Sie eine Privatperson, GbR, VV-GmbH oder eine Hausverwaltung sind und Einzelwohnungen, WGs, Wohnen auf Zeit, Monteurzimmer oder Gewerbeeinheiten vermieten. <strong class="text-[#191c18] font-bold">ImmoXus</strong> automatisiert den gesamten Zyklus von der Liegenschaftsverwaltung über Mietereinzug, Mieterwechsel und Auszug bis hin zur Hausgeldabrechnung, Dokumentenspeicherung und Steuervorbereitung (Anlage-V- / DATEV-Export). Die All-in-One-Lösung für Vermieter und Hausverwaltungen, die maximale Zeitersparnis und lückenlose Rechtssicherheit verlangen.
+      </p>
+      <p class="md:hidden text-sm text-[#444841] leading-relaxed font-normal">
+        <strong class="text-[#191c18] font-bold">ImmoXus</strong> automatisiert Mieteingänge, Nebenkosten, Belege und die Anlage V in Rekordzeit – rechtssicher, GoBD-konform und für jede Bestandsgröße.
       </p>
 
       <!-- Quick Jump CTA -->
@@ -1141,10 +1153,13 @@
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black font-headline text-[#191c18] tracking-tight">
         4 typische Praxis-Fallbeispiele, eine Lösung: ImmoXus
       </h2>
-      <p class="text-sm sm:text-base text-[#444841] max-w-4xl mx-auto leading-relaxed">
+      <p class="hidden md:block text-sm sm:text-base text-[#444841] max-w-4xl mx-auto leading-relaxed">
         Wählen Sie ein Praxis-Fallbeispiel und erleben Sie Schritt für Schritt, wie ImmoXus typische Vermieter-Probleme in stressfreie automatisierte Abläufe verwandelt.
       </p>
-      <p class="text-[11px] text-[#757870] max-w-4xl mx-auto italic">
+      <p class="md:hidden text-sm text-[#444841] leading-relaxed">
+        Erleben Sie praxisnah, wie ImmoXus typische Vermieter-Probleme in automatisierte Abläufe verwandelt.
+      </p>
+      <p class="hidden sm:block text-[11px] text-[#757870] max-w-4xl mx-auto italic">
         Hinweis: Bei den dargestellten Profilen handelt es sich um typische, exemplarische Praxis-Fallbeispiele zur Veranschaulichung der Systemfunktionen und Workflows von ImmoXus.
       </p>
     </div>
@@ -1654,8 +1669,11 @@
       <h2 class="text-3xl sm:text-4xl font-black font-headline text-[#191c18] tracking-tight">
         Der 99-Cent-Deal
       </h2>
-      <p class="text-sm sm:text-base text-[#444841] max-w-4xl mx-auto leading-relaxed">
+      <p class="hidden md:block text-sm sm:text-base text-[#444841] max-w-4xl mx-auto leading-relaxed">
         Aktuell werden bereits <strong class="font-semibold text-[#191c18]">87 Einheiten</strong> erfolgreich und rechtssicher mit ImmoXus verwaltet. Nutzen Sie jetzt unser exklusives Sonderangebot. Wir schenken den nächsten 99 Vermietern <strong class="font-semibold text-[#191c18]">ganze 99 Tage</strong> kostenlose Nutzung statt der regulären 60 Tage!
+      </p>
+      <p class="md:hidden text-sm text-[#444841] leading-relaxed">
+        Bereits <strong class="font-semibold text-[#191c18]">87 Einheiten</strong> aktiv verwaltet: Die nächsten 99 Vermieter erhalten <strong class="font-semibold text-[#191c18]">99 Tage kostenlos</strong> statt 60 Tage!
       </p>
     </div>
 
