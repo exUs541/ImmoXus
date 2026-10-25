@@ -433,7 +433,7 @@
     <!-- Gleitendes Drawer-Panel (100% Viewport-Höhe, solide weiß) -->
     <div
       id="mobile-nav-sheet"
-      class="absolute right-0 top-0 bottom-0 w-80 max-w-[85vw] h-full min-h-[100dvh] bg-white p-6 shadow-2xl flex flex-col justify-between overflow-y-auto transform transition-transform duration-300 ease-out translate-x-full z-10"
+      class="absolute right-0 top-0 bottom-0 w-80 max-w-[85vw] h-full min-h-[100dvh] bg-white py-6 px-7 sm:px-8 shadow-2xl flex flex-col justify-between overflow-y-auto transform transition-transform duration-300 ease-out translate-x-full z-10"
       onclick="event.stopPropagation()"
     >
       <div>
@@ -470,7 +470,7 @@
             type="button"
             onclick="toggleMobileMenu(false)"
             aria-label="Menü schließen"
-            class="w-9 h-9 rounded-xl flex items-center justify-center text-[#757870] hover:text-[#191c18] hover:bg-slate-100 cursor-pointer font-bold transition-colors"
+            class="w-9 h-9 rounded-xl flex items-center justify-center text-[#757870] hover:text-[#191c18] hover:bg-[#f2f4ed] cursor-pointer font-bold transition-colors mr-1.5"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"/>
@@ -480,22 +480,22 @@
         </div>
 
         <nav class="flex flex-col gap-1.5 pt-4 text-sm font-bold text-slate-700">
-          <a href="#value-calculator" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-[#f2f4ed] hover:text-[#434f3c] transition-colors flex items-center justify-between group">
+          <a href="#value-calculator" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 pr-4 rounded-xl hover:bg-[#f2f4ed] hover:text-[#434f3c] transition-colors flex items-center justify-between group">
             <span>Zeit- &amp; Kostenrechner</span>
             <span class="text-xs text-slate-400 group-hover:text-[#55624d] transition-colors">➔</span>
           </a>
-          <a href="#storyline" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-[#f2f4ed] hover:text-[#434f3c] transition-colors flex items-center justify-between group">
+          <a href="#storyline" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 pr-4 rounded-xl hover:bg-[#f2f4ed] hover:text-[#434f3c] transition-colors flex items-center justify-between group">
             <span>Praxis-Tour</span>
             <span class="text-xs text-slate-400 group-hover:text-[#55624d] transition-colors">➔</span>
           </a>
-          <a href="#deal-99" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-[#f2f4ed] hover:text-[#434f3c] transition-colors flex items-center justify-between group">
+          <a href="#deal-99" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 pr-4 rounded-xl hover:bg-[#f2f4ed] hover:text-[#434f3c] transition-colors flex items-center justify-between group">
             <span class="flex items-center gap-2">
               <span>99-Cent-Deal</span>
               <span class="px-1.5 py-0.5 rounded text-[10px] font-black bg-emerald-100 text-emerald-800">Aktion</span>
             </span>
             <span class="text-xs text-slate-400 group-hover:text-[#55624d] transition-colors">➔</span>
           </a>
-          <a href="#trust" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 rounded-xl hover:bg-[#f2f4ed] hover:text-[#434f3c] transition-colors flex items-center justify-between group">
+          <a href="#trust" onclick="toggleMobileMenu(false)" class="py-2.5 px-3 pr-4 rounded-xl hover:bg-[#f2f4ed] hover:text-[#434f3c] transition-colors flex items-center justify-between group">
             <span>Funktionen</span>
             <span class="text-xs text-slate-400 group-hover:text-[#55624d] transition-colors">➔</span>
           </a>
