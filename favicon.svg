@@ -1,50 +1,67 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
   <defs>
-    <linearGradient id="house-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E5C882" />
-      <stop offset="50%" stop-color="#B8963E" />
-      <stop offset="100%" stop-color="#8A6E1E" />
+    <!-- Stitch Zenith Natural Sage Stroke Gradient -->
+    <linearGradient id="zenith-sage-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#98a68e" />
+      <stop offset="45%" stop-color="#55624d" />
+      <stop offset="100%" stop-color="#3d4737" />
     </linearGradient>
-    <linearGradient id="house-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="100%" stop-color="#F9F6F0" />
+
+    <!-- Stitch Paper / Sanctuary Background -->
+    <linearGradient id="zenith-paper-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f2f4ed" />
     </linearGradient>
-    <linearGradient id="ix-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#997A24" />
-      <stop offset="50%" stop-color="#B8963E" />
-      <stop offset="100%" stop-color="#D4AF37" />
+
+    <!-- Stitch Monogram Accent (Deep Forest Sage to Natural Sage) -->
+    <linearGradient id="zenith-monogram" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d3529" />
+      <stop offset="60%" stop-color="#434f3c" />
+      <stop offset="100%" stop-color="#55624d" />
     </linearGradient>
+
+    <!-- Subtle Ambient Shadow -->
+    <filter id="soft-shadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#55624d" flood-opacity="0.12" />
+    </filter>
   </defs>
+
+  <!-- Outer Architectural House Silhouette -->
   <path
     d="M50 9 L15 38.5 C13.5 39.8 13 41.4 13 43.2 L13 85 C13 89.4 16.6 93 21 93 L79 93 C83.4 93 87 89.4 87 85 L87 43.2 C87 41.4 86.5 39.8 85 38.5 L50 9 Z"
-    fill="url(#house-bg)"
-    stroke="url(#house-stroke)"
+    fill="url(#zenith-paper-bg)"
+    stroke="url(#zenith-sage-stroke)"
     stroke-width="4.5"
     stroke-linejoin="round"
+    filter="url(#soft-shadow)"
   />
+
+  <!-- Architectural Gable Ridge Line -->
   <path
     d="M27 40 L50 21 L73 40"
-    stroke="url(#house-stroke)"
-    stroke-width="2"
+    stroke="url(#zenith-sage-stroke)"
+    stroke-width="2.2"
     stroke-linecap="round"
-    stroke-opacity="0.5"
+    stroke-opacity="0.45"
   />
+
+  <!-- Minimalist Chimney -->
   <path
     d="M71 18 L71 27"
-    stroke="url(#house-stroke)"
+    stroke="url(#zenith-sage-stroke)"
     stroke-width="3.5"
     stroke-linecap="round"
   />
+
+  <!-- Monogram "IX" in Manrope Geometry -->
   <text
     x="50"
-    y="73"
+    y="72"
     text-anchor="middle"
-    fill="url(#ix-gold)"
-    font-family="system-ui, -apple-system, sans-serif"
-    font-size="33"
-    font-weight="900"
+    fill="url(#zenith-monogram)"
+    font-family="'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif"
+    font-size="32"
+    font-weight="800"
     letter-spacing="-0.8"
-  >
-    IX
-  </text>
+  >IX</text>
 </svg>
